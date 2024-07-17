@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Getting Started Tutorial</title>
+    <title>BRIDGE Getting Started Tutorial</title>
     <style>
         body {
             display: flex;
@@ -18,10 +18,9 @@
             height: 100vh;
             position: fixed;
             overflow-y: auto;
-            margin-rigth: 270px; 
         }
         .content {
-            margin-left: 270px; /* Increased margin-left for more distance from the sidebar */
+            margin-left: 270px;
             padding: 20px;
         }
         .content h1, .content h2, .content h3 {
@@ -44,48 +43,59 @@
     <div class="sidebar">
         <h2>Contents</h2>
         <a href="#introduction">Introduction</a>
-        <a href="#installation">Installation</a>
-        <a href="#usage">Usage</a>
-        <a href="#advanced">Advanced Topics</a>
-        <a href="#conclusion">Conclusion</a>
+        <a href="#structure">Structure</a>
+        <a href="#settings">Settings</a>
+        <a href="#templates">Templates</a>
+        <a href="#create-crf">How to Create a CRF with BRIDGE</a>
+        <a href="#user-defined-questions">User Defined Questions</a>
+        <a href="#bridge-files">How to Use the BRIDGE Generated Files</a>
     </div>
     <div class="content">
         <h1 id="introduction">Introduction</h1>
-        <p>Welcome to the tutorial. This guide will help you get started with our tool.</p>
-
-        <h2 id="installation">Installation</h2>
-        <p>Follow these steps to install the tool:</p>
-        <ul>
-            <li>Step 1: Download the installer.</li>
-            <li>Step 2: Run the installer.</li>
-            <li>Step 3: Follow the on-screen instructions.</li>
-        </ul>
+        <p>BRIDGE is a web application that assists in the creation of Clinical Report Forms (CRFs). It is based on ARC.</p>
+        <p>ARC is a comprehensive machine-readable document in CSV format, designed for use in Clinical Report Forms (CRFs) during disease outbreaks. It includes a library of questions covering demographics, comorbidities, symptoms, medications, and outcomes. Each question is based on a standardized schema, has specific definitions mapped to controlled terminologies, and has built-in quality control. ARC is openly accessible, with version control via GitHub ensuring document integrity and collaboration.</p>
+        <p>BRIDGE allows users to check questions that have been curated for emerging and infectious diseases, and create a comprehensive CRF.</p>
+        <p>BRIDGE is a web-based application designed to operationalize ARC and edit any ISARIC CRF and tailor it to an outbreak's particular context. By selecting and customizing clinical questions and ensuring necessary data points for each, BRIDGE automates the creation of Case Report Forms (CRFs) for each disease and specific research context. It generates the data dictionary and XML needed to create a REDCap database for capturing data in the ARC structure. Additionally, it produces paper-like versions of the CRFs and completion guides.</p>
         
-        <h2 id="usage">Usage</h2>
-        <h3>Basic Usage</h3>
-        <p>Here's how to use the tool for basic tasks:</p>
-        <figure>
-            <img src="path/to/your/image1.png" alt="Basic Usage Screenshot" style="max-width:100%;">
-            <figcaption>Figure 1: Basic usage example</figcaption>
-        </figure>
-
-        <h3>Advanced Usage</h3>
-        <p>For advanced tasks, you can use the following commands:</p>
-        <figure>
-            <img src="path/to/your/image2.png" alt="Advanced Usage Screenshot" style="max-width:100%;">
-            <figcaption>Figure 2: Advanced usage example</figcaption>
-        </figure>
-
-        <h2 id="advanced">Advanced Topics</h2>
-        <p>Explore advanced topics in this section:</p>
-        <ul>
-            <li>Customization options</li>
-            <li>Integration with other tools</li>
-            <li>Troubleshooting common issues</li>
-        </ul>
+        <h2 id="structure">Structure</h2>
+        <p>BRIDGE is divided into three components:</p>
+        <ol>
+            <li>The tool bar is located on the left and allows the user to enter the settings and the templates. To open each of those you should click on the respective icon and click back when you want to return to the general view.</li>
+            <li>The ARC visualization checkable tree is in the central panel of the application. It presents ARC as a tree structure with different levels: ARC version, forms, sections, and questions.</li>
+            <li>The CRF representation panel shows how the CRF is going to be when generating, including selected questions and support questions needed to be functional (that are automatically added by BRIDGE).</li>
+        </ol>
         
-        <h2 id="conclusion">Conclusion</h2>
-        <p>Thank you for using our tool. For more information, visit our website or contact support.</p>
+        <h2 id="settings">Settings</h2>
+        <p>In the settings panel, users can select the version of ARC they want to use and the BRIDGE outcomes they want to generate:</p>
+        <ul>
+            <li><strong>ISARIC Clinical Characterization XML:</strong> This file can be used to generate a REDCap project. It contains the clinical characterization structure that can be uploaded to REDCap to generate a project that allows data capture in the ARC structure.</li>
+            <li><strong>REDCap Data Dictionary:</strong> This file can be used to add the specific forms and questions selected in BRIDGE to the REDCap project.</li>
+            <li><strong>Paper-like CRF:</strong> This is a PDF file that can be printed and used to collect data manually, allowing sites that cannot capture data electronically to collect information that can later be uploaded to the REDCap database.</li>
+        </ul>
+        <p>To add a question to the CRF, users need to check the respective question. After that, a view about how the CRF is looking will appear in the left panel of BRIDGE.</p>
+        
+        <h2 id="templates">Templates</h2>
+        <p>Templates are pre-selected groups of questions. Users can click on the Templates tab and select those they want to include in the CRF.</p>
+        
+        <h2 id="create-crf">How to Create a CRF with BRIDGE</h2>
+        <p>To create a CRF in BRIDGE, users need to navigate the checkable tree and select the questions they want to include in the CRF. After this is done, a representation of the questions will appear in the CRF representation panel. Sometimes additional questions will appear because BRIDGE handles retro-inclusion of questions. For example, when the user checks the ‘Pregnant’ question, the ‘Sex at birth’ question is also added to the CRF.</p>
+        <p>Similarly, BRIDGE also generates and adds questions that improve electronic data collection. For example, when the user selects the question ‘Other sign(s) or abnormality,’ additional questions are added that promote the inclusion of up to five additional unlisted signs at presentation.</p>
+        
+        <h2 id="user-defined-questions">User Defined Questions</h2>
+        <p>In addition to allowing the selection of questions for a particular CRF, BRIDGE allows further question customization in the following ways:</p>
+        <ul>
+            <li><strong>‘Select units’ question:</strong> Measurement units can be selected in questions that have the text ‘(select units)’ in the label. Users can select the units they want to include in the CRF, and BRIDGE will add the pertinent questions for this. For example, if a user selects a single unit for a question, such as cm in ‘Height,’ the numeric question ‘Height (cm)’ will be added. If the user selects multiple units, such as cm and in, BRIDGE will generate a numeric question for ‘Height’ and another radio question for ‘Select Height units’ with the selected units.</li>
+            <li><strong>‘User list’ question:</strong> For particular questions, the options that are adequate for the disease and/or site can be selected by the user. The user needs to click the LABEL of the question with this symbol ↳ in the checkable tree. This will open a new window that allows users to select the pertinent options for such questions. This will generate a radio question with the user-selected options and the ‘Other’ option. It will also generate a dropdown question with the options that were not selected by the user, which corresponds to a second layer of possible options to limit free text. A third question for free text is also added and will appear in electronic capture when the ‘Other’ option in the second layer dropdown is selected.</li>
+            <li><strong>‘Multi list’ question:</strong> The question with this symbol on the label ⇉ has a similar behavior to the ‘User list’ question, with the only difference being that the layer one options are checkboxes, not radios, allowing multiple selections.</li>
+        </ul>
+        <p>After choosing the variables, users can generate the pertinent files. They need to enter a CRF name in the textbox below the CRF representation panel and click the generate button.</p>
+        
+        <h2 id="bridge-files">How to Use the BRIDGE Generated Files</h2>
+        <p>As mentioned, BRIDGE generates three files:</p>
+        <ul>
+            <li><strong>ISARIC Clinical Characterization XML:</strong> This XML file can be used to create a project in REDCap. To do this, navigate to the 'Project Setup' section in REDCap, and under 'Design your data collection instruments & enable your project,' click on 'Upload Instrument Zip file' and upload the XML file generated by BRIDGE.</li>
+            <li><strong>REDCap Data Dictionary CSV:</strong> This CSV file can be used to update an existing REDCap project. Go to the 'Data Dictionary' section in REDCap, click 'Choose File,' and upload the CSV file generated by BRIDGE. Click 'Upload File' to apply the changes.</li>
+            <li><strong>Paper-like CRF:</strong> This PDF file can be printed and used for manual data capture in sites that cannot collect data electronically. The collected data can later be entered into the REDCap database.</li>
+        </ul>
     </div>
 </body>
-</html>
