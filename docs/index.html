@@ -9,6 +9,7 @@
             display: flex;
             font-family: Arial, sans-serif;
             margin: 0;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
         .sidebar {
             width: 250px;
@@ -20,11 +21,15 @@
             overflow-y: auto;
         }
         .content {
-            margin-left: 270px; /* Increased margin-left for more distance from the sidebar */
+            margin-left: 270px;
             padding: 20px;
+            max-width: 900px; /* Fixed width for the content */
         }
         .content h1, .content h2, .content h3 {
             margin-top: 40px;
+        }
+        .content p, .content img {
+            max-width: 100%; /* Ensure paragraphs and images fit within the fixed width */
         }
         .sidebar a {
             display: block;
