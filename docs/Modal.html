@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIDGE Getting Started Tutorial</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #f4f4f4;
+            padding: 15px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+        }
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+            max-width: 900px; /* Fixed width for the content */
+        }
+        .content h1, .content h2, .content h3 {
+            margin-top: 40px;
+        }
+        .content p, .content img {
+            max-width: 100%; /* Ensure paragraphs and images fit within the fixed width */
+        }
+        .sidebar a {
+            display: block;
+            padding: 10px;
+            color: #333;
+            text-decoration: none;
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+        .sidebar a:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Contents</h2>
+        <a href="#introduction">Introduction</a>
+        <a href="#structure">Structure</a>
+        <a href="#settings">Settings</a>
+        <a href="#templates">Templates</a>
+        <a href="#create-crf">How to Create a CRF with BRIDGE</a>
+        <a href="#user-defined-questions">User Defined Questions</a>
+        <a href="#bridge-files">How to Use the BRIDGE Generated Files</a>
+    </div>
