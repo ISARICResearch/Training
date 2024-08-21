@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAP Report</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #f4f4f4;
+            padding: 15px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+        }
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+            max-width: 900px;
+        }
+        .content h1, .content h2, .content h3 {
+            margin-top: 40px;
+        }
+        .content p, .content img {
+            max-width: 100%;
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            color: #f8f8f2;
+        }
+        .sidebar a {
+            display: block;
+            padding: 10px;
+            color: #333;
+            text-decoration: none;
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+        .sidebar a:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Contents</h2>
+        <a href="#introduction">Introduction</a>
+        <a href="#structure">Structure</a>
+        <a href="#templates">Templates</a>
+        <a href="#creating-rap">Creating a RAP</a>
+        <a href="#reusable-modules">Reusable Modules</a>
+        <a href="#custom-panel">Creating Your Own Panel</a>
+        <a href="#finishing-modal">Finishing the Modal</a>
+        <a href="#additional-steps">Additional Steps</a>
+    </div>
+    <div class="content">
+        <h1 id="introduction">Introduction</h1>
+        <p>VERTEX (Visual Evidence & Research Tool for Exploration) is an ISARIC developed web application designed to present graphs and tables based on relevant research questions that need to be quickly answered during an outbreak.</p>
+
+        <p>When an outbreak occurs across the world, frontline healthcare workers and research staff often find themselves inundated with clinical data. This data is vital to understand key trends in patient characteristics, risk factors, treatments, and outcomes. VERTEX is designed to rapidly present graphs and tables based on relevant research questions. This helps identification of key epidemiological factors and facilitates data-driven decision-making.</p>
+
+        <p>This is done with the aid of RAPs.</p>
+
+        <h2 id="structure">Structure</h2>
+        <p>The VERTEX dashboard consists of an interactive map with a menu. The Filters and Controls category can be used to alter the displayed data according to Gender, Age, Outcome, and Country.</p>
+
+        <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/10_vertex.png" alt="VERTEX structure">
+
+        <h2 id="templates">Templates</h2>
+        <p>Currently, we have pipelines for visualising the spectrum of clinical features in a disease and determining risk factors for patient outcomes. New questions will be added by the ISARIC team and the wider scientific community, enabling the creation and sharing of new pipelines.</p>
+
+        <h3 id="characterization"><em>Characterization</em></h3>
+        <p>This section contains different graphs including:</p>
+        <ul>
+            <li>Descriptive Table containing count of each variable</li>
+            <li>Dual-sided stacked pyramid contrasting outcomes within age and sex</li>
+            <li>Horizontal bar graph demonstrating proportions of signs and symptoms in the patient population</li>
+            <li>UpSet plot to visualize interacting sets of data. The five most common signs or symptoms in a dataset are seen here, with the series of dots showing which symptoms are included in each intersection.</li>
+            <li>Heatmap with dendrogram to compare the frequency of co-morbidities and symptoms while clustering variables based on similarity in their distribution</li>
+        </ul>
+
+        <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/11_charac.png" alt="Heatmap">
+
+        <h2 id="creating-rap">Creating a Reusable Analytical Pipeline (RAP)</h2>
+        <p>RAPs automate the process of data analysis ensuring results are consistent, transparent, and reproducible. They also minimise human error, enhance efficiency, and facilitate validation of analysis. This approach is fundamental in research and data analysis to ensure findings are reliable.</p>
+
+        <p>RAPs can be reused across different projects or analyses with easy adjustments without modifying the core code. Hence, this reduces time and effort required for repetitive or complex tasks, which is vital in low-resource settings.</p>
+
+        <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/12_reusable.png" alt="RAP">
+
+        <p>Through this guide, we aim to illustrate a detailed demonstration of the steps required to create your own RAP.</p>
+
+        <h3 id="Step 1">Step 1: Identifying suitable graphical representations</h3>
+        <p>The first step is determining which graphs would best represent the information that is being presented. To do this, we explored existing publications and examined the figures utilised that would be applicable in our scenario focusing upon treatments. </p>
+
+        <p>We identified heatmaps that illustrated relationships between treatments & complications / co-morbidities. We also identified violin plots to visualise the distribution of treatment types amongst sex and age. Finally, we found a cumulative frequency graph useful to demonstrate all types of treatments over an outbreak period. </p>
+
+        <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/13_graphs.png" alt="graphs">
+
+        <p> For each graph, we identified which variables would be used as inputs referencing the ARC database and the data dictionary. With this we created fake data for the purpose of confidentiality during testing replicating the format of the data template. </p>
+
+        <a href="https://github.com/ISARICResearch/Training/raw/main/docs/assets/dengue_data_dictionary.csv" download>Data dictionary</a>
+        <br>
+        <a href="https://github.com/ISARICResearch/Training/raw/main/docs/assets/60_Dengue_Fake_Patient_v2.csv" download>Fake Data</a>
+        
+        <h3 id="reusable-modules">Step 2: Creating reusable modules</h3>
+        <p>Using your preferred Python IDE (i.e. Spyder), we will create the code for your desired graph. VERTEX uses Plotly, a sub-library from Dash. A library of graphics available can be found at <a href="https://plotly.com/python/">https://plotly.com/python/</a>. This also assists in providing examples of the code required to create a graph & customise the graph to your specifications.</p>
+
+        <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/14_violin.png" alt="graphs">
+
+        <p>Next, to incorporate these into VERTEX, create a function containing the plot you have coded in IsaricDraw.py.
+        <br>  IsaricDraw.py contains a collection of functions which are called upon in RAP sections (e.g. Characterization, Risk / Prognosis). An example is shown below. The parameters included allow the graph to be customised for different variable sets, titles and labels. </p>
+       
+        <pre><code>def violin_plot (datao,vio_bin,vio_cont,num_graphs,title,graph_id) :</code></pre>
+       
+        <h3 id="Step 3">Step 3: Creating your own panel</h3>
+        <p> Before starting, we need to create a space for the section to go. In IsaricDraw.py, under the define_menu function:</p>
+        
+        <p>1.Create a button renaming variable 1 (‘Treatment’) and variable 5 (“treatx”):</p>
+        <pre><code>treatmentx_btn=dbc.Button("Treatment" id={"type": "open-modal" "index": "treatx"} className="mb-2" style={'width': '100%'})</code></pre>
+        <pre><code>generic_btn=dbc.Button("Treatment", id={"type": "open-modal", "index": "treatx"}, className="mb-2", style={'width': '100%'})</code></pre>
+
+        <p>2. Link a new panel to this button and the existing modal:</p>
+        <pre><code>treatment_children=[treatmentx_btninitial_modal]</code></pre>
+        <pre><code>generic_children = [generic_btn initial_modal]</code></pre>
+        
+        <p>Add an accordion item similar to:</p>
+        <pre><code>dbc.AccordionItem(
+            title="Interventions",  
+            children=treatment_children
+        )</code></pre>
+        <p> You should now have your own panel similar to: </p>
+        <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/15_panel.png" alt="panel">
+
+        <h3 id="Generic.py"><em>Creating a New File</em></h3>
+        <p>Generic.py is a template created to use as a starting point for creating your own section. This file contains step by step, in code instructions to direct you to the specific lines referred to. We would recommend you create your own file and copy and paste all the info from Generic.py </p>
+
+        <h3 id="Step 4">Step 4: Creating instructions for your section</h3>
+        <p> At the beginning of the create_modal function is the opportunity to specify your instructions for how the RAP should be utilised. The linegraph_instructions and linegraph_about can be altered according to your needs. </p>
+        <pre><code>ef create_modal():</code></pre>
+        <pre><code>    linegraph_instructions = html.Div([</code></pre>
+        <pre><code>        html.Div("1. Select/remove countries using the dropdown (type directly into the dropdowns to search faster)"),</code></pre>
+        <pre><code>        html.Br(),</code></pre>
+        <pre><code>        html.Div("2. Change datasets using the dropdown (country selections are remembered)"),</code></pre>
+        
+        <h3 id="Step 5">Step 5: Adapting the Descriptive Table to display your desired information</h3>
+        <p>In this example we only wanted to see data relating to treatments so specified this with the following code</p>
+        <pre><code>variables_binary=[var for var in variables_binary if var.startswith('inter_')]</code></pre>
+
+        <h3 id="Step 6">Step 6: Specifying the parameters for your functions from IsaricDraw.py</h3>
+        <p> There is a wide variety of plots already available, in addition to the specific graphs you may have created in section 2. We will continue to use the Violin Plot as an example. Define each parameter for the remaining graphs.</p>
+        <pre><code>    vio_bin = 'slider_sex'</code></pre>
+        <pre><code>    vio_cont = 'age'</code></pre>
+        <pre><code>    demog_columns = [vio_bin, vio_cont]</code></pre>
+        <pre><code>    df11 = df_map[list(treatx_columns) + (demog_columns)]</code></pre>
+        <pre><code>    violin_plot = idw.violin_plot(df11, vio_bin, vio_cont,5,'Age Distribution of Treatments by Sex', graph_id="treatx_ViolinPlot2")</code></pre>
+
+        <h3 id="Step 7">Step 7: Finishing the modal</h3>
+        <p> Change the name of the button in the header in addition to adding your functions (with specified parameters). Give each function a unique name </p>
+        <pre><code>dbc.Tab(dbc.Row([dbc.Col([fig_table_treatx],id='table_treatx')]), label='1.Descriptive table'),        </code></pre>
+        <pre><code>dbc.Tab(dbc.Row([dbc.Col(freq_chart_treatx,id='freqTreatx_chart')]), label='2.Frequency of Treatments Utilised'),                     </code></pre>
+        <pre><code>dbc.Tab(dbc.Row([dbc.Col(upset_plot_treatx,id='upsetTreatx_chart')]), label='3.Intersections of Treatments'),</code></pre>
+
+        <h3 id="finishing-modal">Step 8: Specifics</h3>
+        <p>Specify the unique names used for your plots to callback when the button is clicked in Output </p>
+        <pre><code>Output('freqTreatx_chart', 'children'),</code></pre>
+        <pre><code>     Output('upsetTreatx_chart', 'children'),</code></pre>
+        <p> Additionally, we need to provide instructions for when filters and controls are applied to call from an updated dataframe</p>
+        <pre><code> treatx_Heatmap1 = idw.heatmap(filtered_df,title="Heatmap comparing Frequency of Symptoms and Treatments",graph_id="treatx_Heatmap1")</code></pre>
+
+        <h3 id="additional-steps">Step 9: Update corresponding files in <descriptive_dashboard class="py"></descriptive_dashboard></h3>
+        <p>Add instructions to check if a button has been clicked and open the modal.</p>
+        <pre><code>elif button_id =='{"index":"treatx","type":"open-modal"}':</code></pre>
+        <pre><code>        return  not is_open, treatx.create_modal()</code></pre>
