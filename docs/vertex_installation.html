@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAP Report</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #f4f4f4;
+            padding: 15px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+        }
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+            max-width: 900px;
+        }
+        .content h1, .content h2, .content h3 {
+            margin-top: 40px;
+        }
+        .content p, .content img {
+            max-width: 100%;
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            color: #f8f8f2;
+        }
+        .sidebar a {
+            display: block;
+            padding: 10px;
+            color: #333;
+            text-decoration: none;
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+        .sidebar a:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Contents</h2>
+        <a href="#introduction">Introduction</a>
+        <a href="#installation">Installation</a>
+        <a href="#cloning">Cloning the Repository</a>
+        <a href="#getting-started">Getting started</a>
+        <a href="#insight-panel">Insight panel guide</a>
+    </div>
+    <div class="content">
+        <h1 id="getting_started">Getting Started with VERTEX</h1>
+
+        <h2 id="introduction">Introduction</h2>
+        <p>VERTEX (Visual Evidence & Research Tool for Exploration) is an ISARIC developed web application designed to present graphs and tables based on relevant research questions that need to be quickly answered during an outbreak.</p>
+
+        <p>When an outbreak occurs across the world, frontline healthcare workers and research staff often find themselves inundated with clinical data. This data is vital to understand key trends in patient characteristics, risk factors, treatments, and outcomes. VERTEX is designed to rapidly present graphs and tables based on relevant research questions. This helps identification of key epidemiological factors and facilitates data-driven decision-making.</p>
+
+        <h2 id="cloning">Cloning the Repository</h2>
+
+        <p>First, clone the VERTEX GitHub repository. If you have <a href="https://github.com/git-guides/install-git">git</a> already installed then, at the command line:</p>
+
+        <pre><code>git clone https://github.com/ISARICResearch/VERTEX.git</code></pre>
+
+        <p>You can also download the repository manually, by clicking on the green button "Code" in the VERTEX GitHub repository, then on "Download ZIP".</p>
+
+        <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/16_github.png" alt="GitHub">
+
+        <p>This will create a local version of the repository on your machine.</p>
+
+        <h2 id="installation">Installation</h2>
+
+        <p>VERTEX is a tool based on Python code. Please ensure you have <a href="https://www.python.org/downloads/">Python</a> installed on your machine.</p>
+
+        <p>Install the dependencies using the requirements.txt file. If you are currently working on several projects, you may want to create a new environment for VERTEX. You may want to use environment management software such as <a href="https://www.docker.com">Docker</a> or <a href="https://docs.conda.io/en/latest/Conda">Conda</a>.</p>
+
+        <pre><code>python3 -m pip install -r requirements.txt</code></pre>
+
+        <h2 id="getting-started">Getting started</h2>
+
+        <p> TO DO </p>
+
+        <h2 id="insight-panel">Insight panel guide</h2>
+
+        <p>For a more detailed guide in writing new reproducible analytic pipelines (RAPs) for VERTEX, please refer to the <a href="https://isaricresearch.github.io/Training/insight_panel.html">insight panel guide</a>.</p>
+
+      </div>
+ </body>
+ </html>
