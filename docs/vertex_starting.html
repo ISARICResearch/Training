@@ -56,13 +56,15 @@
 </head>
 <body>
     <div class="sidebar">
-        <a href="https://isaricresearch.github.io/Training/"><h2>Home</h2></a> 
         <h2>Contents</h2>
         <a href="#introduction">Introduction</a>
         <a href="#installation">Installation</a>
         <a href="#cloning">Cloning the Repository</a>
         <a href="#getting-started">Getting started</a>
-        <a href="#insight-panel">Insight panel guide</a>
+        <a href="#insight-panels">Insight panels</a>
+        <a href="#next-steps">Insight panel guide</a>
+        <p></p>
+        <a href="https://isaricresearch.github.io/Training/"><h2>Home</h2></a> 
     </div>
     <div class="content">
         <h1 id="getting_started">Getting Started with VERTEX</h1>
@@ -84,9 +86,17 @@
 
         <p>This will create a local version of the repository on your machine.</p>
 
+        <p>If you used git, this repository will be in your current working directory, named VERTEX. Navigate to the repository, at the command line:</p>
+
+        <pre><code>cd VERTEX</code></pre>
+
+        <p>If you downloaded the repository manually, this repository will be in your Downloads folder, named VERTEX-main. Click into this folder.</p>
+        
         <h2 id="installation">Installation</h2>
 
-        <p>VERTEX is a tool based on Python code. Please ensure you have <a href="https://www.python.org/downloads/">Python</a> installed on your machine.</p>
+        <p>VERTEX is a tool based on Python code. Please ensure you have <a href="https://www.python.org/downloads/">Python</a> installed on your machine. You can check which version of Python you currently have installed, at the command line:</p>
+
+        <pre><code>python --version</code></pre>
 
         <p>Install the dependencies using the requirements.txt file. If you are currently working on several projects, you may want to create a new environment for VERTEX. You may want to use environment management software such as <a href="https://www.docker.com">Docker</a> or <a href="https://docs.conda.io/en/latest/Conda">Conda</a>.</p>
 
@@ -94,9 +104,31 @@
 
         <h2 id="getting-started">Getting started</h2>
 
-        <p> TO DO </p>
+        <p>To start VERTEX, run the following command from within the VERTEX repository.</p>
 
-        <h2 id="insight-panel">Insight panel guide</h2>
+        <pre><code>python3 descriptive_dashboard.py</code></pre>
+
+        <p>The VERTEX dashboard will now be running. The program will print output including the following: "Dash is running on http://x.x.x.x:xxxx/", where x is replaced by numbers. Copy this http address into your web browser to open the dashboard.</p>
+
+        <h2 id="insight-panels">Insight panels</h2>
+
+        <p>The VERTEX dashboard includes default insight panels:</p>
+
+        <ul>
+            <li>Characterisation
+            <ul>
+                <li>Clinical features</li>
+		    </ul>
+            </li>
+            <li>Risk/Prognosis
+            <ul>
+                <li>Clinical features by patient outcome</li>
+                <li>Risk factors for patient outcomes</li>
+		    </ul>
+            </li>
+		</ul>
+
+        <h2 id="next-steps">Next steps</h2>
 
         <p>For a more detailed guide in writing new reproducible analytic pipelines (RAPs) for VERTEX, please refer to the <a href="https://isaricresearch.github.io/Training/insight_panel.html">insight panel guide</a>.</p>
 
