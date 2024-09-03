@@ -147,15 +147,28 @@
 
         <h3 id="Step 4">Step 4: Creating instructions for your section</h3>
         <p> At the beginning of the create_modal function is the opportunity to specify your instructions for how the RAP should be utilised. The linegraph_instructions and linegraph_about can be altered according to your needs. </p>
-        <pre><code>def create_modal(): <br>&emsp;linegraph_instructions = html.Div([<br>&emsp;html.Div("1. Select/remove countries using the dropdown (type directly into the dropdowns to search faster)"),<br>&emsp;html.Br(),<br>&emsp;html.Div("2. Change datasets using the dropdown (country selections are remembered)"),</code></pre>
+        <pre><code>
+def create_modal():
+	linegraph_instructions = html.Div([
+		html.Div("1. Select/remove countries using the dropdown (type directly into the dropdowns to search faster)"),
+		html.Br(),
+		html.Div("2. Change datasets using the dropdown (country selections are remembered)"),
+		</code></pre>
         
         <h3 id="Step 5">Step 5: Adapting the Descriptive Table to display your desired information</h3>
         <p>In this example we only wanted to see data relating to treatments so specified this with the following code</p>
-        <pre><code>variables_binary=[var for var in variables_binary if var.startswith('inter_')]</code></pre>
+        <pre><code>
+	variables_binary=[var for var in variables_binary if var.startswith('inter_')]
+		</code></pre>
 
         <h3 id="Step 6">Step 6: Specifying the parameters for your functions from IsaricDraw.py</h3>
         <p> There is a wide variety of plots already available, in addition to the specific graphs you may have created in section 2. We will continue to use the Violin Plot as an example. Define each parameter for the remaining graphs.</p>
-        <pre><code>vio_bin = 'slider_sex'<br>vio_cont = 'age'<br>demog_columns = [vio_bin, vio_cont]<br>df11 = df_map[list(treatx_columns) + (demog_columns)]<br>violin_plot = idw.violin_plot(df11, vio_bin, vio_cont, 5, 'Age Distribution of Treatments by Sex', graph_id="treatx_ViolinPlot2")</code></pre>
+        <pre><code>
+	vio_bin = 'slider_sex'<br>vio_cont = 'age'
+	demog_columns = [vio_bin, vio_cont]
+	df11 = df_map[list(treatx_columns) + (demog_columns)]
+	violin_plot = idw.violin_plot(df11, vio_bin, vio_cont, 5, 'Age Distribution of Treatments by Sex', graph_id="treatx_ViolinPlot2")
+		</code></pre>
 
         <h3 id="Step 7">Step 7: Finishing the modal</h3>
         <p> Change the name of the button in the header in addition to adding your functions (with specified parameters). Give each function a unique name </p>
