@@ -57,8 +57,8 @@
 <body>
     <div class="sidebar">
         <h2><a href="https://isaricresearch.github.io/Training/">Home</a></h2>
-        <div>
-		<h2>Contents</h2>
+        <div style="padding-left:10px">
+			<h2>Contents</h2>
 	        <a href="#introduction">Introduction</a>
 	        <a href="#structure">Structure</a>
 	        <a href="#templates">Templates</a>
@@ -126,30 +126,26 @@
 
         <p>Next, to incorporate these into VERTEX, create a function containing the plot you have coded in IsaricDraw.py. <br> IsaricDraw.py contains a collection of functions which are called upon in RAP sections (e.g. Characterization, Risk / Prognosis). An example is shown below. The parameters included allow the graph to be customised for different variable sets, titles and labels. </p>
        
-        <pre><code>
-			def violin_plot (datao, vio_bin, vio_cont, num_graphs, title, graph_id):
+        <pre><code>def violin_plot (datao, vio_bin, vio_cont, num_graphs, title, graph_id):
 		</code></pre>
        
         <h3 id="Step 3">Step 3: Creating your own panel</h3>
         <p> Before starting, we need to create a space for the section to go. In IsaricDraw.py, under the define_menu function:</p>
         
         <p>1.Create a button renaming variable 1 (‘Treatment’) and variable 5 (“treatx”):</p>
-        <pre><code>
-			treatmentx_btn=dbc.Button("Treatment" id={"type": "open-modal" "index": "treatx"} className="mb-2" style={'width': '100%'})<br>
-        	generic_btn=dbc.Button("Treatment", id={"type": "open-modal", "index": "treatx"}, className="mb-2", style={'width': '100%'})
+        <pre><code>treatmentx_btn=dbc.Button("Treatment" id={"type": "open-modal" "index": "treatx"} className="mb-2" style={'width': '100%'})<br>
+		generic_btn=dbc.Button("Treatment", id={"type": "open-modal", "index": "treatx"}, className="mb-2", style={'width': '100%'})
 		</code></pre>
 
         <p>2. Link a new panel to this button and the existing modal:</p>
-        <pre><code>
-			treatment_children=[treatmentx_btninitial_modal]<br>
-        	generic_children = [generic_btn initial_modal]
+        <pre><code>treatment_children=[treatmentx_btninitial_modal]<br>
+		generic_children = [generic_btn initial_modal]
 		</code></pre>
         
         <p>Add an accordion item similar to:</p>
-        <pre><code>
-			dbc.AccordionItem( <br>
-            &emsp;	title="Interventions", <br>
-            &emsp;	children=treatment_children <br>
+        <pre><code>dbc.AccordionItem( <br>
+		&emsp;	title="Interventions", <br>
+		&emsp;	children=treatment_children <br>
         )
 		</code></pre>
         <p> You should now have your own panel similar to: </p>
@@ -160,12 +156,11 @@
 
         <h3 id="Step 4">Step 4: Creating instructions for your section</h3>
         <p> At the beginning of the create_modal function is the opportunity to specify your instructions for how the RAP should be utilised. The linegraph_instructions and linegraph_about can be altered according to your needs. </p>
-        <pre><code>
-			def create_modal(): <br>
-       		&emsp;	linegraph_instructions = html.Div([<br>
-        	&emsp;	html.Div("1. Select/remove countries using the dropdown (type directly into the dropdowns to search faster)"),<br>
-        	&emsp;	html.Br(),<br>
-        	&emsp;	html.Div("2. Change datasets using the dropdown (country selections are remembered)"),
+        <pre><code>def create_modal(): <br>
+		&emsp;	linegraph_instructions = html.Div([<br>
+		&emsp;	html.Div("1. Select/remove countries using the dropdown (type directly into the dropdowns to search faster)"),<br>
+		&emsp;	html.Br(),<br>
+		&emsp;	html.Div("2. Change datasets using the dropdown (country selections are remembered)"),
 	    </code></pre>
         
         <h3 id="Step 5">Step 5: Adapting the Descriptive Table to display your desired information</h3>
@@ -174,35 +169,31 @@
 
         <h3 id="Step 6">Step 6: Specifying the parameters for your functions from IsaricDraw.py</h3>
         <p> There is a wide variety of plots already available, in addition to the specific graphs you may have created in section 2. We will continue to use the Violin Plot as an example. Define each parameter for the remaining graphs.</p>
-        <pre><code>
-			vio_bin = 'slider_sex'<br>
-	        vio_cont = 'age'<br>
-	        demog_columns = [vio_bin, vio_cont]<br>
-	        df11 = df_map[list(treatx_columns) + (demog_columns)]<br>
-	        violin_plot = idw.violin_plot(df11, vio_bin, vio_cont, 5, 'Age Distribution of Treatments by Sex', graph_id="treatx_ViolinPlot2")
+        <pre><code>vio_bin = 'slider_sex'<br>
+		vio_cont = 'age'<br>
+		demog_columns = [vio_bin, vio_cont]<br>
+		df11 = df_map[list(treatx_columns) + (demog_columns)]<br>
+		violin_plot = idw.violin_plot(df11, vio_bin, vio_cont, 5, 'Age Distribution of Treatments by Sex', graph_id="treatx_ViolinPlot2")
 		</code></pre>
 
         <h3 id="Step 7">Step 7: Finishing the modal</h3>
         <p> Change the name of the button in the header in addition to adding your functions (with specified parameters). Give each function a unique name </p>
-        <pre><code>
-			dbc.Tab(dbc.Row([dbc.Col([fig_table_treatx],id='table_treatx')]), label='1.Descriptive table'),<br>
-        	dbc.Tab(dbc.Row([dbc.Col(freq_chart_treatx,id='freqTreatx_chart')]), label='2.Frequency of Treatments Utilised'),<br>
-        	dbc.Tab(dbc.Row([dbc.Col(upset_plot_treatx,id='upsetTreatx_chart')]), label='3.Intersections of Treatments'),
+        <pre><code>dbc.Tab(dbc.Row([dbc.Col([fig_table_treatx],id='table_treatx')]), label='1.Descriptive table'),<br>
+		dbc.Tab(dbc.Row([dbc.Col(freq_chart_treatx,id='freqTreatx_chart')]), label='2.Frequency of Treatments Utilised'),<br>
+		dbc.Tab(dbc.Row([dbc.Col(upset_plot_treatx,id='upsetTreatx_chart')]), label='3.Intersections of Treatments'),
 		</code></pre>
 
         <h3 id="finishing-modal">Step 8: Specifics</h3>
         <p>Specify the unique names used for your plots to callback when the button is clicked in Output </p>
-        <pre><code>
-			Output('freqTreatx_chart', 'children'),<br>
-        	Output('upsetTreatx_chart', 'children'),</code></pre>
+        <pre><code>Output('freqTreatx_chart', 'children'),<br>
+        Output('upsetTreatx_chart', 'children'),
+		</code></pre>
         <p> Additionally, we need to provide instructions for when filters and controls are applied to call from an updated dataframe</p>
-        <pre><code>
-			treatx_Heatmap1 = idw.heatmap(filtered_df, title="Heatmap comparing Frequency of Symptoms and Treatments", graph_id="treatx_Heatmap1")
+        <pre><code>treatx_Heatmap1 = idw.heatmap(filtered_df, title="Heatmap comparing Frequency of Symptoms and Treatments", graph_id="treatx_Heatmap1")
 		</code></pre>
 
         <h3 id="additional-steps">Step 9: Update corresponding files in <descriptive_dashboard class="py"></descriptive_dashboard></h3>
         <p>Add instructions to check if a button has been clicked and open the modal.</p>
-        <pre><code>
-			elif button_id =='{"index":"treatx","type":"open-modal"}':<br>
-        	&emsp;	return not is_open, treatx.create_modal()
+        <pre><code>elif button_id =='{"index":"treatx","type":"open-modal"}':<br>
+		&emsp;	return not is_open, treatx.create_modal()
 		</code></pre>
