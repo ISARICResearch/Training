@@ -110,7 +110,9 @@
 
 	<h2 id="Config file">Modify the config file</h2>
 
-	<p>If you want VERTEX to run using a REDCap database, you need to modify the file called redcap_config.py to include your REDCap API token. The API token currently in this file is for a small low-fidelity synthetic dataset (fake data) hosted in an ISARIC REDCap project. If your database contains real patient data, then is vitally important that you do not share this API token, so do not share your version of the redcap_config.py once you have updated this.</p>
+	<p>If you want VERTEX to run using a REDCap database, you need to modify the file called redcap_config.py to include your REDCap API token. The API token currently in this file is for a small low-fidelity synthetic dataset (fake data) hosted in an ISARIC REDCap project.</p>
+	    
+	<p>If your database contains real patient data, then is vitally important that you <strong>do not share this API token</strong>, as others may be able to access your data if you do so. The easiest way to avoid this scenario is if you do not share your version of the redcap_config.py, once you've updated this.</p>
 
 	<p>You should also change the REDCap url to your institution's REDCap URL and provide site codes for all sites in your database. VERTEX currently assumes the subject IDs are formatted as 'xxxxx-yyyy' where 'xxxxx' is the site code listed and 'yyyy' is the patient number for that site.</p>
 	    
