@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAP Report</title>
+    <title>Create your own insight panel in VERTEX</title>
     <style>
         body {
             display: flex;
@@ -58,34 +58,30 @@
     <div class="sidebar">
         <h2><a href="https://isaricresearch.github.io/Training/">Home</a></h2>
         <div style="padding-left:10px">
-			<h2>Contents</h2>
+		<h2>Contents</h2>
 	        <a href="#introduction">Introduction</a>
-	        <a href="#structure">Structure</a>
-	        <a href="#templates">Templates</a>
-	        <a href="#creating-rap">Creating a RAP</a>
-	        <a href="#reusable-modules">Reusable Modules</a>
-	        <a href="#custom-panel">Creating Your Own Panel</a>
-	        <a href="#finishing-modal">Finishing the Modal</a>
-	        <a href="#additional-steps">Additional Steps</a>
+	        <a href="#raps">Reproducible analytical pipelines</a>
+		<a href="#cloning_vertex">Insight panels</a>
+		<a href="#vertex_functions">Insight panels</a>
 		</div>
     </div>
     <div class="content">
         <h1 id="introduction">Introduction</h1>
-        <p>VERTEX (Visual Evidence & Research Tool for Exploration) is an ISARIC developed web application designed to present graphs and tables based on relevant research questions that need to be quickly answered during an outbreak.</p>
+        <p>VERTEX (Visual Evidence & Research Tool for Exploration) is a web-based application that presents graphs and tables relating to research questions that need to be quickly answered during an outbreak.</p>
 
-        <p>When an outbreak occurs across the world, frontline healthcare workers and research staff often find themselves inundated with clinical data. This data is vital to understand key trends in patient characteristics, risk factors, treatments, and outcomes. VERTEX is designed to rapidly present graphs and tables based on relevant research questions. This helps identification of key epidemiological factors and facilitates data-driven decision-making.</p>
+	<p>VERTEX is built using blocks of code, which we call <strong>reproducible analytical pipelines</strong> (RAPs). RAPs are used to create visualisations, graphs and tables, each of which we call an <strong>insight</strong>. Insights are grouped together in an <strong>insight panel</strong> to provide information about one study endpoint relating to a particular research question.</p>
+	    
+	<p>At the moment, we have insight panels for the following research questions:
+	<ul>
+        <li>What are the characteristics and clinical presentation of patients with ... at hospital admission?</li>
+	    <li>What are the outcomes within ... days of presentation, and what are the risk factors associated with these outcomes?</li>
+	    <li>What treatments are administered to patients with ... during their observation period?</li>
+	</ul>
+	New questions will be added by the ISARIC team and the wider scientific community, enabling the creation and sharing of new RAPs and insight panels.</p>
+	
+	<p>This guide will help you to create a new insight panel. These are practical instructions for how to adapt the VERTEX code only. Before you start, you should consider how you want to present or the model the data, and how to visualise this information conceptually.</p>
 
-        <p>This is done with the aid of RAPs.</p>
-
-        <h2 id="structure">Structure</h2>
-        <p>The VERTEX dashboard consists of an interactive map with a menu. The Filters and Controls category can be used to alter the displayed data according to Gender, Age, Outcome, and Country.</p>
-
-        <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/10_vertex.png" alt="VERTEX structure">
-
-        <h2 id="templates">Templates</h2>
-        <p>Currently, we have pipelines for visualising the spectrum of clinical features in a disease and determining risk factors for patient outcomes. New questions will be added by the ISARIC team and the wider scientific community, enabling the creation and sharing of new pipelines.</p>
-
-        <h3 id="characterization"><em>Characterization</em></h3>
+<!--         <h3 id="characterization"><em>Characterization</em></h3>
         <p>This section contains different graphs including:</p>
         <ul>
             <li>Descriptive Table containing count of each variable</li>
@@ -93,20 +89,16 @@
             <li>Horizontal bar graph demonstrating proportions of signs and symptoms in the patient population</li>
             <li>UpSet plot to visualize interacting sets of data. The five most common signs or symptoms in a dataset are seen here, with the series of dots showing which symptoms are included in each intersection.</li>
             <li>Heatmap with dendrogram to compare the frequency of co-morbidities and symptoms while clustering variables based on similarity in their distribution</li>
-        </ul>
+        </ul> -->
 
-        <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/11_charac.png" alt="Heatmap">
-
-        <h2 id="creating-rap">Creating a Reusable Analytical Pipeline (RAP)</h2>
-        <p>RAPs automate the process of data analysis ensuring results are consistent, transparent, and reproducible. They also minimise human error, enhance efficiency, and facilitate validation of analysis. This approach is fundamental in research and data analysis to ensure findings are reliable.</p>
-
-        <p>RAPs can be reused across different projects or analyses with easy adjustments without modifying the core code. Hence, this reduces time and effort required for repetitive or complex tasks, which is vital in low-resource settings.</p>
+        <h2 id="raps">Reproducible analytical pipelines</h2>
+        <p>Reproducible analytical pipelines (RAPs) are built using small reusable modular blocks of code. These blocks of code process the database into an analysis-ready dataframe relating a particular endpoint of a relevant research question. This dataframe is then visualised as a table or figure.<\p>
+		
+	<p>RAPs automate the process of data analysis ensuring results are consistent, transparent, and reproducible. They can be reused across different analyses with easy adjustments without modifying the core code.</p>
 
         <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/12_reusable.png" alt="RAP">
 
-        <p>Through this guide, we aim to illustrate a detailed demonstration of the steps required to create your own RAP.</p>
-
-        <h3 id="Step 1">Step 1: Identifying suitable graphical representations</h3>
+<!--         <h2 id="Step 1">Step 1: Identifying suitable graphical representations</h2>
         <p>The first step is determining which graphs would best represent the information that is being presented. To do this, we explored existing publications and examined the figures utilised that would be applicable in our scenario focusing upon treatments. </p>
 
         <p>We identified heatmaps that illustrated relationships between treatments & complications / co-morbidities. We also identified violin plots to visualise the distribution of treatment types amongst sex and age. Finally, we found a cumulative frequency graph useful to demonstrate all types of treatments over an outbreak period. </p>
@@ -117,12 +109,28 @@
 
         <a href="https://github.com/ISARICResearch/Training/raw/main/docs/assets/dengue_data_dictionary.csv" download>Data dictionary</a>
         <br>
-        <a href="https://github.com/ISARICResearch/Training/raw/main/docs/assets/60_Dengue_Fake_Patient_v2.csv" download>Fake Data</a>
-        
-        <h3 id="reusable-modules">Step 2: Creating reusable modules</h3>
-        <p>Using your preferred Python IDE (i.e. Spyder), we will create the code for your desired graph. VERTEX uses Plotly, a sub-library from Dash. A library of graphics available can be found at <a href="https://plotly.com/python/">https://plotly.com/python/</a>. This also assists in providing examples of the code required to create a graph & customise the graph to your specifications.</p>
+        <a href="https://github.com/ISARICResearch/Training/raw/main/docs/assets/60_Dengue_Fake_Patient_v2.csv" download>Fake Data</a> -->
 
-        <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/14_violin.png" alt="graphs">
+	<h2 id="cloning_vertex">Cloning VERTEX and getting started</h2>
+
+	<p>For this guide, you will need your own local copy of VERTEX. If you have not already done so, please follow the VERTEX starting guide: <a href="https://isaricresearch.github.io/Training/vertex_starting"></a>https://isaricresearch.github.io/Training/vertex_starting</a>.</p>
+
+	<h2 id="vertex_functions">VERTEX main functions</h2>
+
+	<p>The core scripts in VERTEX are:
+	<ul>
+            <li>getREDCapData.py: this imports data from a REDCap project via an API token, gets the data type for each variable and reformats the dataframe</li>
+	    <li>IsaricAnalytics.py: this contains reusable modular blocks of code used in the standard RAPs, e.g. converting data to the same units, imputing missing data, fitting models</li>
+	    <li>IsaricDraw.py: this contains functions for converting dataframes into insights e.g. visualisations, tables and figures</li>
+	    <li>descriptive_dashboard.py: this is the main function for the web-based application, which runs the dashboard and defines what happens when the user interacts with the dashboard</li>
+	</ul></p>
+
+	<p>Other .py functions are specific to each research question, and consist of the main code for one or more insight panels. In order to create a new insight panel for an existing research question, you will need to add to one of these scripts. In order to create an insight panel for a new research question, you will need to create a new script.</p>
+
+	<p>In the process of creating a new insight panel, you will need to modify the core scripts in specific places. These are described below and highlighted with comments within the code. </p>
+        
+<!--         <h3 id="reusable-modules">Step 2: Creating reusable modules</h3>
+        <p>VERTEX uses Plotly, a sub-library from Dash. A library of graphics available can be found at <a href="https://plotly.com/python/">https://plotly.com/python/</a>. This also assists in providing examples of the code required to create a graph & customise the graph to your specifications.</p>
 
         <p>Next, to incorporate these into VERTEX, create a function containing the plot you have coded in IsaricDraw.py. <br> IsaricDraw.py contains a collection of functions which are called upon in RAP sections (e.g. Characterization, Risk / Prognosis). An example is shown below. The parameters included allow the graph to be customised for different variable sets, titles and labels. </p>
        
@@ -195,4 +203,4 @@
         <pre><code>
 	elif button_id =='{"index":"treatx","type":"open-modal"}':
 		return not is_open, treatx.create_modal()
-	</code></pre>
+	</code></pre> -->
