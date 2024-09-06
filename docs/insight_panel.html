@@ -69,6 +69,10 @@
         <h1 id="introduction">Introduction</h1>
         <p>VERTEX (Visual Evidence & Research Tool for Exploration) is a web-based application that presents graphs and tables relating to research questions that need to be quickly answered during an outbreak.</p>
 
+	<video loop controls autoplay muted>
+	  <source src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/vertex.mp4" type="video/mp4">
+	</video>
+	    
 	<p>VERTEX is built using blocks of code, which we call <strong>reproducible analytical pipelines</strong> (RAPs). RAPs are used to create visualisations, graphs and tables, each of which we call an <strong>insight</strong>. Insights are grouped together in an <strong>insight panel</strong> to provide information about one study endpoint relating to a particular research question.</p>
 	    
 	<p>At the moment, we have insight panels for the following research questions:
@@ -92,11 +96,12 @@
         </ul> -->
 
         <h2 id="raps">Reproducible analytical pipelines</h2>
-        <p>Reproducible analytical pipelines (RAPs) are built using small reusable modular blocks of code. These blocks of code process the database into an analysis-ready dataframe relating a particular endpoint of a relevant research question. This dataframe is then visualised as a table or figure.<\p>
+        
+	<p>Reproducible analytical pipelines (RAPs) are built using small reusable modular blocks of code. These blocks of code process the database into an analysis-ready dataframe relating a particular endpoint of a relevant research question. This dataframe is then visualised as a table or figure.</p>
+
+	<img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/12_reusable.png" alt="RAP">
 		
 	<p>RAPs automate the process of data analysis ensuring results are consistent, transparent, and reproducible. They can be reused across different analyses with easy adjustments without modifying the core code.</p>
-
-        <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/12_reusable.png" alt="RAP">
 
 <!--         <h2 id="Step 1">Step 1: Identifying suitable graphical representations</h2>
         <p>The first step is determining which graphs would best represent the information that is being presented. To do this, we explored existing publications and examined the figures utilised that would be applicable in our scenario focusing upon treatments. </p>
@@ -113,7 +118,7 @@
 
 	<h2 id="cloning_vertex">Cloning VERTEX and getting started</h2>
 
-	<p>For this guide, you will need your own local copy of VERTEX. If you have not already done so, please follow the VERTEX starting guide: <a href="https://isaricresearch.github.io/Training/vertex_starting"></a>https://isaricresearch.github.io/Training/vertex_starting</a>.</p>
+	<p>For this guide, you will need your own local copy of VERTEX. If you have not already done so, please follow the VERTEX starting guide: <a href="https://isaricresearch.github.io/Training/vertex_starting">https://isaricresearch.github.io/Training/vertex_starting</a>.</p>
 
 	<h2 id="vertex_functions">VERTEX main functions</h2>
 
@@ -127,7 +132,7 @@
 
 	<p>Other .py functions are specific to each research question, and consist of the main code for one or more insight panels. In order to create a new insight panel for an existing research question, you will need to add to one of these scripts. In order to create an insight panel for a new research question, you will need to create a new script.</p>
 
-	<p>In the process of creating a new insight panel, you will need to modify the core scripts in specific places. These are described below and highlighted with comments within the code. </p>
+	<p>In the process of creating a new insight panel, you will need to modify the core scripts in specific places. These are described below and highlighted with comments within the code.</p>
         
 <!--         <h3 id="reusable-modules">Step 2: Creating reusable modules</h3>
         <p>VERTEX uses Plotly, a sub-library from Dash. A library of graphics available can be found at <a href="https://plotly.com/python/">https://plotly.com/python/</a>. This also assists in providing examples of the code required to create a graph & customise the graph to your specifications.</p>
