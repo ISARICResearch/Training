@@ -60,11 +60,13 @@
 	<div style="padding-left:10px">
             <h2>Contents</h2>
 	    <a href="#introduction">Introduction</a>
+		<a href="#cloning">Cloning the repository</a>
 	    <a href="#installation">Installation</a>
-	    <a href="#cloning">Cloning the Repository</a>
-	    <a href="#getting-started">Getting started</a>
-	    <a href="#insight-panels">Insight panels</a>
-	    <a href="#next-steps">Insight panel guide</a>
+		<a href="#config_file">Modifying the config file</a>
+		<a href="#dashboard_script">Running the dashboard script/a>
+	    <a href="#dashboard">VERTEX dashboard</a>
+	    <a href="#insight_panels">Insight panels</a>
+	    <a href="#next_steps">Next steps</a>
 	</div>
     </div>
     <div class="content">
@@ -91,7 +93,7 @@
 	
 	<p>This guide will help you set up a VERTEX dashboard on your local machine, and explore the existing pipelines.</p>
 	    
-	<h2 id="cloning">Cloning the Repository</h2>
+	<h2 id="cloning">Cloning the repository</h2>
 
 	<p>First, clone the VERTEX GitHub repository. If you have <a href="https://github.com/git-guides/install-git">git</a> already installed then, at the command line:</p>
 
@@ -119,7 +121,7 @@
 
 	<pre><code>python3 -m pip install -r requirements.txt</code></pre>
 
-	<h2 id="Config file">Modify the config file</h2>
+	<h2 id="config_file">Modifying the config file</h2>
 
 	<p>If you want VERTEX to run using a REDCap database, you need to modify the file called redcap_config.py to include your REDCap API token. The API token currently in this file is for a small low-fidelity synthetic dataset (fake data) hosted in an ISARIC REDCap project.</p>
 	    
@@ -131,7 +133,7 @@
 redcap_url='https://ncov.medsci.ox.ac.uk/api/'
 site_mapping={'01820':'PAK'}</code></pre>
 	    
-	<h2 id="dashboard_script">Run the dashboard script</h2>
+	<h2 id="dashboard_script">Running the dashboard script</h2>
 
 	<p>To start VERTEX, run the following command from within the VERTEX repository.</p>
 
@@ -145,7 +147,7 @@ site_mapping={'01820':'PAK'}</code></pre>
 
 	<img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/10_vertex.png" alt="VERTEX structure">
 	
-	<h2 id="insight-panels">Insight panels</h2>
+	<h2 id="insight_panels">Insight panels</h2>
 
 	<p>Insight panels show visualisations relevant to a particular study endpoint. An insight panel contains another <strong>Filters and Controls</strong> setting (D), a list of all insights for the endpoint (E), a visualisation or table for the selected insight (F), and <strong>About</strong> and <strong>Instructions</strong> buttons for further information (G).</p>
 
@@ -165,7 +167,7 @@ site_mapping={'01820':'PAK'}</code></pre>
 			</ul></li>
 	</ul>
 
-	<h2 id="next-steps">Next steps</h2>
+	<h2 id="next_steps">Next steps</h2>
 
 	<p>For a more detailed guide in writing new reproducible analytic pipelines (RAPs) for VERTEX, please refer to the <a href="https://isaricresearch.github.io/Training/insight_panel.html">insight panel guide</a>.</p>
 
