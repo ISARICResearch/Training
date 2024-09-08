@@ -59,10 +59,15 @@
         <h2><a href="https://isaricresearch.github.io/Training/">Home</a></h2>
         <div style="padding-left:10px">
 		<h2>Contents</h2>
-	        <a href="#introduction">Introduction</a>
-	        <a href="#raps">Reproducible analytical pipelines</a>
-		<a href="#cloning_vertex">Insight panels</a>
-		<a href="#vertex_functions">Insight panels</a>
+    	  <a href="#introduction">Introduction</a>
+    	  <a href="#raps">Reproducible analytical pipelines</a>
+    		<a href="#cloning_vertex">Getting started with VERTEX</a>
+    		<a href="#vertex_scripts">Core scripts in VERTEX</a>
+        <a href="#generic_panel"><samp>generic_panel.py</samp></a>
+        <a href="#isaric_draw"><samp>IsaricDraw.py</samp></a>
+        <a href="#descriptive_dashboard"><samp>descriptive_dashboard.py</samp></a>
+        <a href="#recap">Recap</a>
+        <a href="#feedback">Support and feedback</a>
 		</div>
     </div>
     <div class="content">
@@ -72,140 +77,207 @@
 	<video loop controls autoplay muted>
 	  <source src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/vertex.mp4" type="video/mp4">
 	</video>
-	    
+
 	<p>VERTEX is built using blocks of code, which we call <strong>reproducible analytical pipelines</strong> (RAPs). RAPs are used to create visualisations, graphs and tables, each of which we call an <strong>insight</strong>. Insights are grouped together in an <strong>insight panel</strong> to provide information about one study endpoint relating to a particular research question.</p>
-	    
+
 	<p>At the moment, we have insight panels for the following research questions:
 	<ul>
-        <li>What are the characteristics and clinical presentation of patients with ... at hospital admission?</li>
+      <li>What are the characteristics and clinical presentation of patients with ... at hospital admission?</li>
 	    <li>What are the outcomes within ... days of presentation, and what are the risk factors associated with these outcomes?</li>
 	    <li>What treatments are administered to patients with ... during their observation period?</li>
 	</ul>
 	New questions will be added by the ISARIC team and the wider scientific community, enabling the creation and sharing of new RAPs and insight panels.</p>
-	
-	<p>This guide will help you to create a new insight panel. These are practical instructions for how to adapt the VERTEX code only. Before you start, you should consider how you want to present or the model the data, and how to visualise this information conceptually.</p>
 
-<!--         <h3 id="characterization"><em>Characterization</em></h3>
-        <p>This section contains different graphs including:</p>
-        <ul>
-            <li>Descriptive Table containing count of each variable</li>
-            <li>Dual-sided stacked pyramid contrasting outcomes within age and sex</li>
-            <li>Horizontal bar graph demonstrating proportions of signs and symptoms in the patient population</li>
-            <li>UpSet plot to visualize interacting sets of data. The five most common signs or symptoms in a dataset are seen here, with the series of dots showing which symptoms are included in each intersection.</li>
-            <li>Heatmap with dendrogram to compare the frequency of co-morbidities and symptoms while clustering variables based on similarity in their distribution</li>
-        </ul> -->
+	<p>This guide will help you to create a new insight panel. These are practical instructions for how to adapt the VERTEX code only. Before you start, you should consider how you want to present or the model the data.</p>
 
         <h2 id="raps">Reproducible analytical pipelines</h2>
-        
+
 	<p>Reproducible analytical pipelines (RAPs) are built using small reusable modular blocks of code. These blocks of code process the database into an analysis-ready dataframe relating a particular endpoint of a relevant research question. This dataframe is then visualised as a table or figure.</p>
 
 	<img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/12_reusable.png" alt="RAP">
-		
+
 	<p>RAPs automate the process of data analysis ensuring results are consistent, transparent, and reproducible. They can be reused across different analyses with easy adjustments without modifying the core code.</p>
 
-<!--         <h2 id="Step 1">Step 1: Identifying suitable graphical representations</h2>
-        <p>The first step is determining which graphs would best represent the information that is being presented. To do this, we explored existing publications and examined the figures utilised that would be applicable in our scenario focusing upon treatments. </p>
-
-        <p>We identified heatmaps that illustrated relationships between treatments & complications / co-morbidities. We also identified violin plots to visualise the distribution of treatment types amongst sex and age. Finally, we found a cumulative frequency graph useful to demonstrate all types of treatments over an outbreak period. </p>
-
-        <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/13_graphs.png" alt="graphs">
-
-        <p> For each graph, we identified which variables would be used as inputs referencing the ARC database and the data dictionary. With this we created fake data for the purpose of confidentiality during testing replicating the format of the data template. </p>
-
-        <a href="https://github.com/ISARICResearch/Training/raw/main/docs/assets/dengue_data_dictionary.csv" download>Data dictionary</a>
-        <br>
-        <a href="https://github.com/ISARICResearch/Training/raw/main/docs/assets/60_Dengue_Fake_Patient_v2.csv" download>Fake Data</a> -->
-
-	<h2 id="cloning_vertex">Cloning VERTEX and getting started</h2>
+	<h2 id="cloning_vertex">Getting started with VERTEX</h2>
 
 	<p>For this guide, you will need your own local copy of VERTEX. If you have not already done so, please follow the VERTEX starting guide: <a href="https://isaricresearch.github.io/Training/vertex_starting">https://isaricresearch.github.io/Training/vertex_starting</a>.</p>
 
-	<h2 id="vertex_functions">VERTEX main functions</h2>
+  <p>In order for VERTEX to work with data from your own REDCap project, you need to modify the config file to include your REDCap API token. If your database contains real patient data, then is vitally important that you <strong>do not share this API token</strong>, as others may be able to access your data if you do so. Please see the VERTEX starting guide for more details about this.</p>
+
+	<h2 id="vertex_scripts">Core scripts in VERTEX</h2>
 
 	<p>The core scripts in VERTEX are:
 	<ul>
-            <li>getREDCapData.py: this imports data from a REDCap project via an API token, gets the data type for each variable and reformats the dataframe</li>
-	    <li>IsaricAnalytics.py: this contains reusable modular blocks of code used in the standard RAPs, e.g. converting data to the same units, imputing missing data, fitting models</li>
-	    <li>IsaricDraw.py: this contains functions for converting dataframes into insights e.g. visualisations, tables and figures</li>
-	    <li>descriptive_dashboard.py: this is the main function for the web-based application, which runs the dashboard and defines what happens when the user interacts with the dashboard</li>
+      <li><a href="https://github.com/ISARICResearch/VERTEX/blob/main/getREDCapData.py"><samp>getREDCapData.py</samp></a>: this script imports data from a REDCap project via an API token, gets the data type for each variable and reformats the dataframe</li>
+	    <li><a href="https://github.com/ISARICResearch/VERTEX/blob/main/IsaricAnalytics.py"><samp>IsaricAnalytics.py</samp></a>: this script contains reusable modular blocks of code used in the standard RAPs, e.g. converting data to the same units, imputing missing data, fitting models</li>
+	    <li><a href="https://github.com/ISARICResearch/VERTEX/blob/main/IsaricDraw.py"><samp>IsaricDraw.py</samp></a>: this script contains functions for converting dataframes into insights e.g. visualisations, tables and figures</li>
+	    <li><a href="https://github.com/ISARICResearch/VERTEX/blob/main/descriptive_dashboard.py"><samp>descriptive_dashboard.py</samp></a>: this script is the main function for the web-based application, which runs the dashboard and defines what happens when the user interacts with the dashboard</li>
 	</ul></p>
 
-	<p>Other .py functions are specific to each research question, and consist of the main code for one or more insight panels. In order to create a new insight panel for an existing research question, you will need to add to one of these scripts. In order to create an insight panel for a new research question, you will need to create a new script.</p>
+	<p>Other <samp>.py</samp> functions in VERTEX are specific to key research questions, and consist of the main code for one insight panels. In order to create a new insight panel, you will need to create a new script.</p>
 
-	<p>In the process of creating a new insight panel, you will need to modify the core scripts in specific places. These are described below and highlighted with comments within the code.</p>
-        
-<!--         <h3 id="reusable-modules">Step 2: Creating reusable modules</h3>
-        <p>VERTEX uses Plotly, a sub-library from Dash. A library of graphics available can be found at <a href="https://plotly.com/python/">https://plotly.com/python/</a>. This also assists in providing examples of the code required to create a graph & customise the graph to your specifications.</p>
+  <p>In the process of creating a new insight panel, you will need to modify the core scripts in specific places, which is described below.</p>
 
-        <p>Next, to incorporate these into VERTEX, create a function containing the plot you have coded in IsaricDraw.py. <br> IsaricDraw.py contains a collection of functions which are called upon in RAP sections (e.g. Characterization, Risk / Prognosis). An example is shown below. The parameters included allow the graph to be customised for different variable sets, titles and labels. </p>
-       
-        <pre><code>def violin_plot (datao, vio_bin, vio_cont, num_graphs, title, graph_id):</code></pre>
-       
-        <h3 id="Step 3">Step 3: Creating your own panel</h3>
-        <p> Before starting, we need to create a space for the section to go. In IsaricDraw.py, under the define_menu function:</p>
-        
-        <p>1.Create a button renaming variable 1 (‘Treatment’) and variable 5 (“treatx”):</p>
-        <pre><code>treatmentx_btn=dbc.Button("Treatment" id={"type": "open-modal" "index": "treatx"} className="mb-2" style={'width': '100%'})<br>generic_btn=dbc.Button("Treatment", id={"type": "open-modal", "index": "treatx"}, className="mb-2", style={'width': '100%'})</code></pre>
+  <h2 id="generic_panel"><samp>generic_panel.py</samp></h2>
 
-        <p>2. Link a new panel to this button and the existing modal:</p>
-        <pre><code>treatment_children=[treatmentx_btninitial_modal]<br>generic_children = [generic_btn initial_modal]</code></pre>
-        
-        <p>Add an accordion item similar to:</p>
-        <pre><code>dbc.AccordionItem(<br>&emsp;title="Interventions",<br>&emsp;children=treatment_children <br>)</code></pre>
-        <p> You should now have your own panel similar to: </p>
-        <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/15_panel.png" alt="panel">
+  <p>Each insight panel should have its own Python script, which must contain several components that are called by the main dashboard. These should be structured identically in each insight panel script.</p>
 
-        <h3 id="Generic.py"><em>Creating a New File</em></h3>
-        <p>Generic.py is a template created to use as a starting point for creating your own section. This file contains step by step, in code instructions to direct you to the specific lines referred to. We would recommend you create your own file and copy and paste all the info from Generic.py </p>
+  <p>In order to create a new insight panel, the main script that you should copy or adapt is <samp>generic_panel.py</samp>.</p>
 
-        <h3 id="Step 4">Step 4: Creating instructions for your section</h3>
-        <p> At the beginning of the create_modal function is the opportunity to specify your instructions for how the RAP should be utilised. The linegraph_instructions and linegraph_about can be altered according to your needs. </p>
-        <pre><code>def create_modal():
-	linegraph_instructions = html.Div([
-		html.Div("1. Select/remove countries using the dropdown (type directly into the dropdowns to search faster)"),
-		html.Br(),
-		html.Div("2. Change datasets using the dropdown (country selections are remembered)"),
-	</code></pre>
-        
-        <h3 id="Step 5">Step 5: Adapting the Descriptive Table to display your desired information</h3>
-        <p>In this example we only wanted to see data relating to treatments so specified this with the following code</p>
-        <pre><code>
-	variables_binary=[var for var in variables_binary if var.startswith('inter_')]
-		</code></pre>
+  <h4>STEP 1: Rename the script</h4>
 
-        <h3 id="Step 6">Step 6: Specifying the parameters for your functions from IsaricDraw.py</h3>
-        <p> There is a wide variety of plots already available, in addition to the specific graphs you may have created in section 2. We will continue to use the Violin Plot as an example. Define each parameter for the remaining graphs.</p>
-        <pre><code>
-	vio_bin = 'slider_sex'
-	vio_cont = 'age'
-	demog_columns = [vio_bin, vio_cont]
-	df11 = df_map[list(treatx_columns) + (demog_columns)]
-	violin_plot = idw.violin_plot(df11, vio_bin, vio_cont, 5, 'Age Distribution of Treatments by Sex', graph_id="treatx_ViolinPlot2")
-	</code></pre>
+  <p>An insight panel provides visualisations for a study endpoint of a research question. If you want to add multiple insight panels to your copy of VERTEX, each one will need its own script.</p>
 
-        <h3 id="Step 7">Step 7: Finishing the modal</h3>
-        <p> Change the name of the button in the header in addition to adding your functions (with specified parameters). Give each function a unique name </p>
-        <pre><code>
-	dbc.Tab(dbc.Row([dbc.Col([fig_table_treatx],id='table_treatx')]), label='1.Descriptive table'),
-	dbc.Tab(dbc.Row([dbc.Col(freq_chart_treatx,id='freqTreatx_chart')]), label='2.Frequency of Treatments Utilised'),
-	dbc.Tab(dbc.Row([dbc.Col(upset_plot_treatx,id='upsetTreatx_chart')]), label='3.Intersections of Treatments'),
-	</code></pre>
+  <p>You should rename <samp>generic_panel.py</samp> so that it clearly relates to this study endpoint. For example, one of the standard insight panels in VERTEX is called <samp>PatientCharacteristics.py</samp></p>
 
-        <h3 id="finishing-modal">Step 8: Specifics</h3>
-        <p>Specify the unique names used for your plots to callback when the button is clicked in Output </p>
-        <pre><code>
-	Output('freqTreatx_chart', 'children'),
-	Output('upsetTreatx_chart', 'children'),
-	</code></pre>
-	
-        <p> Additionally, we need to provide instructions for when filters and controls are applied to call from an updated dataframe</p>
-        <pre><code>
-	treatx_Heatmap1 = idw.heatmap(filtered_df, title="Heatmap comparing Frequency of Symptoms and Treatments", graph_id="treatx_Heatmap1")
-	</code></pre>
+  <h4>STEP 2: Change the suffix variable</h4>
 
-        <h3 id="additional-steps">Step 9: Update corresponding files in <descriptive_dashboard class="py"></descriptive_dashboard></h3>
-        <p>Add instructions to check if a button has been clicked and open the modal.</p>
-        <pre><code>
-	elif button_id =='{"index":"treatx","type":"open-modal"}':
-		return not is_open, treatx.create_modal()
-	</code></pre> -->
+  <p>Next, you should change the suffix variable at the beginning of the script. Each insight panel script in your copy of VERTEX must have a unique suffix variable. Elements of the VERTEX dashboard (e.g. callbacks) are identified in part by this suffix variable, so VERTEX needs to distinguish between the same callback from two different insight panel scripts.</p>
+
+  <p>You should also change <samp>Panel_title</samp>. This is the label for the insight panel (B) that appears in the VERTEX menu, under the research question (A). You will need to assign the insight panel to a research question in a later step.</p>
+
+  <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/18_menu.png" alt="Menu items">
+
+  <p>You may choose to modify the data reading and processing steps in <samp>generic_panel.py</samp>, but this is not required.</p>
+
+  <h4>STEP 3: Create visualisations</h4>
+
+  <p>Instead, the next part of the code you will need to modify is the function called <samp>visuals_creation</samp>. At the moment, this creates two placeholder figures for the insight panel, which are both simple scatter plots. The output of this function must be a list of all figures required for the insight panel.</p>
+
+  <p><pre><code>def visuals_creation(df_map):
+    ...
+    fig1=idw.fig_placeholder('Plh1')
+    fig2=idw.fig_placeholder('Plh2')
+    return fig1,fig2</code></pre></p>
+
+  <p>In the code above, the two figures are created via the core script <samp>IsaricDraw.py</samp>, which is imported at the beginning of the script as: <samp>import IsaricDraw as idw</samp></p>
+
+  <p>It is possible for you to develop custom additional figures that are not currently included in <samp>IsaricDraw.py</samp>. Instructions for this are provided later in the guide <a href="#isaric_draw">here</a>.</p>
+
+  <h4>STEP 4: Create the modal</h4>
+
+  <p>A modal is an object containing all the information needed to generate in the insight panel. This includes all of the figures and tables created by <samp>visuals_creation</samp>, the text that appears when the user clicks on the <strong>About</strong> and <strong>Instructions</strong> buttons (G). The <strong>Filters and Controls</strong> setting (D) is the same for all insight panels, so is generated elsewhere in <samp>IsaricDraw.py</samp>.</p>
+
+  <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/17_insights.png" alt="VERTEX structure">
+
+  <p>You need to modify the create_modal function to include the visualisations from <samp>visuals_creation</samp>. There are two places that this needs to happen. First, change the output of <samp>visuals_creation</samp> inside <samp>create_modal</samp> to match the same figures and tables created by <samp>visuals_creation</samp>, then create a new tab entry for each figure.</p>
+
+  <p><pre><code>def create_modal():
+    ...
+    fig1,fig2=visuals_creation(df_map)
+    ...
+        dbc.Tab(dbc.Row([dbc.Col(fig1,id='fig1_id')]), label='Figure 1'),
+        dbc.Tab(dbc.Row([dbc.Col(fig2,id='fig2_id')]), label='Figure 2'),
+    ...
+    return modal</pre></code></p>
+
+  <p>You can also modify the text for the <strong>About</strong> and <strong>Instructions</strong> buttons within this function.</p>
+
+  <h4>STEP 5: Update the callbacks</h4>
+
+  <p>The last part of this script to modify is the callback function for updating figures when filters are applied. You will need to add a new Output element for each figure or table in the insight panel, and replace the list of figures and tables with those that you created earlier.</p>
+
+  <p><pre><code>    @app.callback(
+      [Output('fig1_id', 'children'), Output('fig2_id', 'children')],
+      ...
+    )
+    def update_figures(click, genders, age_range, outcomes, countries):
+      ...
+      fig1,fig2=visuals_creation(filtered_df)
+      return [fig1,fig2]</pre></code></p>
+
+  <h2 id="isaric_draw"><samp>IsaricDraw.py</samp></h2>
+
+  <h4>STEP 6: Add new visualisations</h4>
+
+  <p>Visualisations in an insight panel are created in the core script <samp>IsaricDraw.py</samp>.</p>
+
+  <p>The only change that must be made to this script is to assign the insight panel to a research question.</p>
+
+  <p><pre><code>def define_menu(country_dropdown_options):
+    ...
+    generic_btn=dbc.Button("Generic Panel", id={"type": "open-modal", "index": "generic"}, className="mb-2", style={'width': '100%'})
+    ...
+    return dbc.Accordion([
+        ...
+        dbc.AccordionItem(
+            title="Examples",
+            children=[generic_btn]
+        ),
+      ...
+  </code></pre></p>
+
+  <p>There are two steps here. You need create a button for the insight panel. In the example above, replace <samp>"Generic Panel"</samp> and <samp>"generic"</samp> with the <samp>Panel_name</samp> and <samp>suffix</samp> from your insight panel script. You also need to add this insight panel to a research question menu item. You can either add the button to the list of children for an existing research question, or create a new menu item for a new research question.</p>
+
+  <p>VERTEX uses a Python library called Plotly for displaying tables and figures, and this script already contains a number of useful Plotly graphics. More details about the standard Plotly graphics is available can be found at <a href="https://plotly.com/python/">https://plotly.com/python/</a>.</p>
+
+  <p>If you want to create a figure type that isn't currently in VERTEX, you will need to add to <samp>IsaricDraw.py</samp>. To do this, create a new function in this script for the figure, like the simple example below.</p>
+
+  <p><pre><code>def fig_placeholder(title='Placeholder', graph_id='placeholder'):
+    x = [1, 2, 3, 4, 5]
+    y = [10, 14, 12, 15, 13]
+    fig = go.Figure(data=go.Scatter(x=x, y=y, mode='markers', marker=dict(size=10, color='blue')))
+    fig.update_layout(title='Sample Scatter Plot',
+                      xaxis_title='X Axis',
+                      yaxis_title='Y Axis')
+    return dcc.Graph(
+        id=graph_id,
+        figure=fig
+    )</code></pre></p>
+
+  <p>This function must have all dataframes used in the figure as input arguments. It should also have keyword arguments for <samp>title</samp> and <samp>graph_id</samp>, and may have additional keyword arguments e.g. for colormaps. The function must return a Dash object containing the figure and <samp>graph_id</samp>. Notice that the placeholder figure doesn't require any dataframe as an input.</p>
+
+  <h2 id="descriptive_dashboard"><samp>descriptive_dashboard.py</samp></h2>
+
+  <h4>STEP 7: Update the callbacks in the main dashboard script</h4>
+
+  <p>Unless you wish to create additional types of figures not currently in VERTEX, the final task is to update the callbacks in the core script <samp>descriptive_dashboard.py</samp>.</p>
+
+  <p>First, import your new insight panel script, i.e. <samp>import genericPanel as genericFuns</samp></p>
+
+  <p>You will need to import each insight panel you have created. If you have just adapated the script <samp>genericPanel.py</samp>, then replace <samp>"genericPanel"</samp> with the name of your script, and <samp>"genericFuns"</samp> with a unique identifier.</p>
+
+  <p>Next, add the new insight panel to the toggle_modal callback function.</p>
+
+  <p><pre><code>@app.callback(
+    ...
+  )
+  def toggle_modal(n, is_open):
+    ...
+    else:
+        button_id = ctx.triggered[0]['prop_id'].split('.')[0]
+        print(button_id)
+        ...
+        elif button_id =='{"index":"generic","type":"open-modal"}':
+            return not is_open,genericFuns.create_modal()
+        ...
+    return is_open,[]</code></pre></p>
+
+  <p>You need to add a new elif section for each insight panel you created. If you have just adapated the script genericPanel.py, then change <samp>genericFuns.create_modal()</samp> in the output to match the identifier you modified at the beginning of this current script and change the value of <samp>"index"</samp> in the <samp>button_id</samp> Python dict to match the suffix variable from the script for your insight.</p>
+
+  <p>Lastly, you must register the callbacks for each of your insight panel. To do this, replace the script identifier and the suffix variable in the code at the end of the script.</p>
+
+  <p><pre><code>genericFuns.register_callbacks(app,'generic')</code></pre></p>
+
+  <h2 id="recap">Recap</h2>
+
+  <p>To recap, the steps needed to make a new insight panel are:
+  <ol>
+      <li>sCopy and rename the <samp>generic_script.py</samp></li>
+      <li>Change the suffix and panel title variables at the start of this script</li>
+      <li>Add all figures and tables for the insight panel to the function <samp>visuals_creation</samp></li>
+      <li>Add these figures and tables to the function <samp>create_modal</samp></li>
+      <li>Modify the <samp>update_figures</samp> callback to include all figures and tables</li>
+      <li>In <samp>IsaricDraw.py</samp>, add buttons for any new insight panels and add the insight panels to research question menu items</li>
+      <li>If required, create functions for additional Plotly figures or tables</li>
+      <li>In <samp>descriptive_dashboard.py</samp>, import any new insight panel scripts</li>
+      <li>Add the insight panels to the <samp>toggle_modal</samp> callback function</li>
+      <li>Register the callbacks from your insight panel script</li>
+  </ol></p>
+
+  <h2 id="feedback">Support and feedback</h2>
+
+  <p>VERTEX is still a work in progress and we will updating this guide as we make improvements.</p>
+
+  <p>Please get in touch with us at <a href="mailto:data@isaric.org">data@isaric.org</a> if you have any questions or suggestions about VERTEX or about the training guides and we will be happy to help!</p>
+
