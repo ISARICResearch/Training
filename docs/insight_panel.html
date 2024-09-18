@@ -100,13 +100,11 @@
 
 	<p>This guide will help you to create a new insight panel. These are practical instructions for how to adapt the VERTEX code only. Before you start, you should consider how you want to present or the model the data.</p>
 
+	<img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/12_rap_ingest.png" alt="RAP Ingest">
+		
     <h2 id="raps">Reproducible analytical pipelines</h2>
 
-	<p>Reproducible analytical pipelines (RAPs) are built using small reusable modular blocks of code. These blocks of code process the database into an analysis-ready dataframe relating a particular endpoint of a relevant research question. This dataframe is then visualised as a table or figure.</p>
-
-	<img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/12_rap_ingest.png" alt="RAP Ingest">
-
-	<img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/12_rap_process.png" alt="RAP Process">
+	<p>Reproducible analytical pipelines (RAPs) are built using small reusable modular blocks of code. These blocks of code process the database into an analysis-ready dataframe for a clinical measure relating to a research question. This dataframe can then be used to create a visual, i.e. a table or figure.</p>
 
 	<img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/12_rap_serve.png" alt="RAP Serve">
 
@@ -132,11 +130,11 @@
 
 	<h2 id="vertex_scripts">Insight panels</h2>
 
-	<p>Each insight panel should have a separate <samp>.py</samp> in the folder <samp>insight_panels</samp>. In order to create a new insight panel, you will need to create a new script in this folder. If you want to add multiple insight panels to your copy of VERTEX, each one will need its own script.</p>
+	<p>Each insight panel should have a separate <samp>.py</samp> in the folder <a href="https://github.com/ISARICResearch/VERTEX/blob/main/insight_panels"><samp>insight_panels</samp></a>. In order to create a new insight panel, you will need to create a new script in this folder. If you want to add multiple insight panels to your copy of VERTEX, each one will need its own script.</p>
 
 	<p>An insight panel script must contain several components that are required by the main dashboard script. These should be structured identically in each insight panel script.</p>
 
-	<p>This guide will describe the template insight panel, <samp>Examples_Generic.py</samp>. You can copy or adapt this script to create a new insight panel. You can also explore the other insight panels to gain familiarity with how an insight panel script is structured.</p>
+	<p>This guide will describe the template insight panel, <a href="https://github.com/ISARICResearch/VERTEX/blob/main/insight_panels/Examples_Generic.py"><samp>Examples_Generic.py</samp></a>. You can copy or adapt this script to create a new insight panel. You can also explore the other insight panels to gain familiarity with how an insight panel script is structured.</p>
 		
 	<h2 id="generic_panel"><samp>Examples_Generic.py</samp></h2>
 	
@@ -146,27 +144,27 @@
 
 	<h4>STEP 2: Add the name of the script to <samp>__init__.py</samp></h4>
 
-	<p>The <samp>insight_panels</samp> folder has an <samp>__init__.py</samp> file, which contains a list <samp>__all__</samp> of the insight panels that will appear in the dashboard. You must add the new insight panel name (without <samp>.py</samp> at the end) to this list for it to be included in the dashboard.</p>
+	<p>The <samp>insight_panels</samp> folder has an <a href="https://github.com/ISARICResearch/VERTEX/blob/main/insight_panels/__init__.py"><samp>__init__.py</samp></a> file, which contains a list of the insight panels that will appear in the dashboard (<samp>__all__</samp>). You must add the new insight panel name (without <samp>.py</samp> at the end) to this list for it to be included in the dashboard.</p>
 
-	<p>Before running the dashboard, you can add or remove any insight panel script names to this list to customise which are included in the VERTEX dashboard.</p>
+	<p>You can also add or remove any insight panel script names to this list before running the dashboard, in order to customise which are included in the VERTEX dashboard.</p>
 		
 	<p>The <samp>__init__.py</samp> script does not need to contain all of the insight panels in the <samp>insight_panels</samp> folder, only the ones that you currently want to include in your dashboard. If you do not want to an insight panel in the folder to appear in the VERTEX dashboard, then you should leave its script in the folder and just remove the name of the script from <samp>__init__.py</samp>.</p>
 
-	<p>To include a new insight panel in the VERTEX dashboard, you must add We recommend the script for an insight panel to be named <samp>xxxx_yyyy.py</samp>, where you have replaced <samp>xxxx</samp> with the research question and <samp>yyyy</samp> with the clinical measure, e.g. <samp>ClinicalPresentation_DemographicsComorbidities.py</samp>.</p>
-		
 	<h4>STEP 3: Change the suffix variable</h4>
 	
-	<p>Next, you should change the suffix variable at the beginning of the script. Each insight panel script in your copy of VERTEX must have a unique suffix variable.</p>
+	<p>Next, you should change the <samp>suffix</samp> variable at the beginning of the script. Each insight panel script in your copy of VERTEX must have a unique suffix.</p>
 		
 	<p>Elements of the VERTEX dashboard (e.g. callbacks) are identified in part by this suffix variable, so VERTEX needs to distinguish between the same callback from two different insight panel scripts.</p>
 	
-	<p>You should also change <samp>research_question</samp> and <samp>clinical_measure</samp>. These correspond to the research question (A) and the insight panel label (B) that appear in the VERTEX menu.</p>
+	<p>You should also change the <samp>research_question</samp> and <samp>clinical_measure</samp> variables. These correspond to the research question (A) and the insight panel label (B) that appear in the VERTEX menu.</p>
 	
-	<img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/18_menu.png" alt="Menu items">
+	<img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/10_vertex.png" alt="Menu items">
+
+	<p>Multiple insight panels can share the same research question, and these will be grouped together in the dashboard menu. However, the combination of research question and clinical measure must be unique.</p>
 	
 	<h4>STEP 4: Create visuals</h4>
 	
-	<p>The next part of the code you will need to modify is the function called <samp>create_visuals</samp>. In <samp>Examples_Generic.py</samp>, this creates two placeholder figures for the insight panel, which are both simple scatter plots.</p>
+	<p>The next part of the code you will need to modify is the function called <samp>create_visuals</samp>. In <samp>Examples_Generic.py</samp>, this creates two placeholder figures for the insight panel, which are both simple scatter plots. The output of this function is a list of all figures that you want to include in the insight panel.</p>
 
 	<p><pre><code>def create_visuals(df_map):
     '''
@@ -185,13 +183,11 @@
         graph_id='fig2_id' + suffix, graph_label='Figure 2', graph_about='')
     return fig1, fig2</code></pre></p>
 		
-	<p>The first part of this function is commented out as it is not needed for this insight panel, but it would return the data dictionary and a dictionary of variable lists by type, which are often useful here.</p>
+	<p>The first part of this function is commented out as it is not needed for this insight panel, but it would return the data dictionary and a dictionary of variable lists by type, which are often useful for this function.</p>
 
 	<p>The visuals are created via the core script <samp>IsaricDraw.py</samp>, which was imported at the beginning of the script as: <samp>import IsaricDraw as idw</samp>.</p>
-
-	<p>It is possible for you to develop custom additional figures that are not currently included in <samp>IsaricDraw.py</samp>. Instructions for this are provided later in the guide <a href="#isaric_draw">here</a>.</p>
-		
-	<p>Each visual in <samp>IsaricDraw.py</samp> must input one or more dataframes and the keyword arguments <samp>graph_id</samp>, <samp>graph_label</samp> and <samp>graph_about</samp>:
+	
+	<p>Each visual from <samp>IsaricDraw.py</samp> must input one or more dataframes and the keyword arguments <samp>graph_id</samp>, <samp>graph_label</samp> and <samp>graph_about</samp>:
 	<ul>
     	<li><samp>graph_id</samp> is an identifier for the dashboard, so must be unique.</li>
 		<li><samp>graph_label</samp> is the name of the visual in the insight panel (E).</li>
@@ -199,15 +195,15 @@
 	</ul></p>
 
 	<img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/17_insights.png" alt="VERTEX structure">
-		
-	<p>The output of <samp>create_visuals</samp> should be a list of all figures that you want to include in the insight panel.</p>
 
+	<p>Some visuals may have additional keyword arguments, e.g. for color schemes.</p>
+
+	<p>You do not need to edit the <strong>Filters and Controls</strong> setting (D), which is the same for all insight panels and is therefore generated in <samp>IsaricDraw.py</samp>.</p>
+		
 	<h4>STEP 5 (optional): Modify the data processing, modal creation, callbacks</h4>
 		
-	<p>You may choose to modify any other sections of <samp>Examples_Generic.py</samp>, but this is not required and not recommended unless you are confident programming.</p>
-	
-	<p>A modal is an object containing all the information needed to generate in the insight panel. This includes all of the figures and tables created by <samp>visuals_creation</samp>, the text that appears when the user clicks on the <strong>About</strong> and <strong>Instructions</strong> buttons (G). The <strong>Filters and Controls</strong> setting (D) is the same for all insight panels, so is generated elsewhere in <samp>IsaricDraw.py</samp>.</p>
-	
+	<p>You may choose to modify any other sections of the insight panel script, but this is not required and not recommended unless you are confident programming.</p>
+		
 	<h2 id="isaric_draw">Visuals in <samp>IsaricDraw.py</samp></h2>
 	
 	<h4>STEP 6 (optional): Add new RAPs and/or visualisations</h4>
@@ -216,7 +212,7 @@
 	
 	<p>VERTEX uses a Python library called Plotly for displaying tables and figures, and this script already contains a number of useful Plotly graphics. More details about the standard Plotly graphics is available can be found at <a href="https://plotly.com/python/">https://plotly.com/python/</a>.</p>
 	
-	<p>If you want to create a figure type that isn't currently available in VERTEX, you will need to add to <samp>IsaricDraw.py</samp>. To do this, create a new function in this script for the figure, like the simple example below.</p>
+	<p>If you want to create a figure type that isn't currently available in VERTEX, you will need to add a new function to <a href="https://github.com/ISARICResearch/VERTEX/blob/main/IsaricDraw.py"><samp>IsaricDraw.py</samp></a>, in the same structure as the example below.</p>
 	
 	<p><pre><code>def fig_placeholder(df, graph_id='table', graph_label='', graph_about=''):
     x = [1, 2, 3, 4, 5]
@@ -231,12 +227,10 @@
         id=graph_id,
         figure=fig)
     return graph, graph_label, graph_about</code></pre></p>
-	
-	<p>The function must have all dataframes used in the figure as input arguments, as well as keyword arguments for <samp>graph_id</samp>, <samp>graph_label</samp> and <samp>graph_about</samp>. It may have additional keyword arguments e.g. for colormaps.</p>
 		
-	<p>The function must return a Dash object containing the figure and <samp>graph_id</samp> as Dash attribute <samp>id</samp>. It must also return the input <samp>graph_label</samp> and <samp>graph_about</samp>.</p>
+	<p>Input arguments for this function were mentioned earlier in the guide. The function must return a Dash object containing the figure and <samp>graph_id</samp> as Dash attribute <samp>id</samp>. It must also return the inputs <samp>graph_label</samp> and <samp>graph_about</samp> as outputs.</p>
 		
-	<p>Notice that the placeholder figure here doesn't require use the input dataframe.</p>
+	<p>Notice that the placeholder figure here doesn't require use the input dataframe, but it was still included as an input.</p>
 	
 	<h2 id="feedback">Support and feedback</h2>
 	
