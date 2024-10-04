@@ -102,16 +102,98 @@
     
     <p>This guide will help you set up a VERTEX dashboard on your local machine, and explore the existing pipelines.</p>
 
-    <h2 id="auto_install">Automatic Installation</h2>
+    <h2 id="auto_install">Automatic Installation For Windows</h2>
 
-    <p>Download and run the installer file <a href="https://github.com/ISARICResearch/VERTEX/raw/VERTEX_Win_AutoInstaller.exe"><samp>VERTEX_Win_AutoInstaller.exe</samp></a> in any location on your computer. Wait for a terminal window to open, and a sequence of commands will execute. The installation process takes about 10 minutes. You don't need to keep the window maximized (it can be minimized while the process runs).</p>  
-    
-    <h3>Possible issues:</h3>
-    <ul>
-        <li>If the window closes instantly or within the first few seconds of execution, click again to run the installer.</li>
-        <li>If the page remains static on <span class="highlight">"Info"</span>, do not close the window, as the installation has not finished yet.</li>
-        <li>If you are working with VS Code, you will need to change the Python compiler to the pyenv compiler (always the latest version).</li>
-    </ul>
+        <h3>What does it do?</h3>
+        <p>This is an automatic installer specifically made for the Windows operating system.If you use macOS or Linux, please refer to the manual installation guide, as the auto-installer is still being developed.</p>
+
+          <p>First, the program will install Git on your computer. Git is a tool that works like a time machine for your project, allowing you to save, track changes, and revert to previous versions if needed. After installing Git, it will install Pyenv and the Vertex program using Git, by cloning their repository in GitHub. Pyenv is a tool that lets you easily switch between different versions of Python on your computer, helping manage multiple Python versions for different projects without conflicts.</p>
+
+        <p>The installer will also add Pyenv’s path to your system's account variables. In simple terms, this lets your computer know that Pyenv is installed without altering anything else. After that, it will install Python version 3.12.6, followed by the VERTEX platform. Both VERTEX and Pyenv will be installed in your user folder.</p>
+
+      <p>Below is an slideshow example of how to access your user folder:</p>
+
+      <h3>Steps to Locate the .pyenv Folder</h3>
+        <div class="slideshow-container">
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a>&emsp;</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+
+        <div class="mySlides fade">
+          <div class="numbertext">1 / 5</div>
+          <img src="imgs/2.jpg" style="width:100%"> 
+        </div>
+        <div class="mySlides fade">
+          <div class="numbertext">2 / 5</div>
+          <img src="imgs/3.jpg" style="width:100%"> 
+        </div>
+        <div class="mySlides fade">
+          <div class="numbertext">3 / 5</div>
+          <img src="imgs/4.jpg" style="width:100%"> 
+        </div>
+        <div class="mySlides fade">
+          <div class="numbertext">4 / 5</div>
+          <img src="imgs/5.jpg" style="width:100%"> 
+        </div>
+        <div class="mySlides fade">
+          <div class="numbertext">5 / 5</div>
+          <img src="imgs/6.jpg" style="width:70%"> 
+        </div>
+        </div>
+        
+      <br>
+        <div style="text-align:center">
+          <span class="dot" onclick="currentSlide(1)"></span> 
+          <span class="dot" onclick="currentSlide(2)"></span> 
+          <span class="dot" onclick="currentSlide(3)"></span> 
+        </div>
+
+        <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+        function plusSlides(n) {
+          showSlides(slideIndex += n);
+        }
+        function currentSlide(n) {
+          showSlides(slideIndex = n);
+        }
+        function showSlides(n) {
+          let i;
+          let slides = document.getElementsByClassName("mySlides");
+          let dots = document.getElementsByClassName("dot");
+          if (n > slides.length) {slideIndex = 1}    
+          if (n < 1) {slideIndex = slides.length}
+          for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+          }
+          for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+          }
+          slides[slideIndex-1].style.display = "block";  
+          dots[slideIndex-1].className += " active";
+        }
+        </script>
+
+
+      <ol>
+          <li>Start by opening <strong>File Explorer</strong>. You can find its icon in the taskbar or by searching for it in the Start menu. In the left sidebar, click on <strong>This PC</strong> to access your computer’s main drives.</li>
+          <li>Open your <strong>C: drive</strong> (this might be labeled as <em>SSD</em> or something similar, depending on your setup).</li>
+          <li>Navigate to the <strong>Users</strong> directory, where all user profiles are stored. In my case, it's named <em>Usuarios</em>.</li>
+          <li>Find and open your personal user folder. For instance, mine is called <em>luizr</em>, but your folder name might be different.</li>
+          <li>Inside your user folder, look for the <strong>.pyenv</strong> directory. This is where VERTEX and other Python environments may be installed.</li>
+      </ol>
+      
+      <p>When the installation is complete, you will have the option to run or not run VERTEX. Unfortunately, it does not automatically open the web page you need. Please wait for about 2 to 5 minutes, depending on your internet connection, and then manually search for <a href="http://127.0.0.1:8050" target="_blank">http://127.0.0.1:8050</a> in any web browser, such as Google Chrome, Firefox, etc. You may also click in the hyperlink that automatically directs you to http://127.0.0.1:8050</p>
+
+        <h3>Installation Process</h3>
+      <p>Download and run the installer file <a href="https://github.com/ISARICResearch/VERTEX/blob/main/VERTEX_Win_AutoInstaller_v2_eng.exe" target="_blank">VERTEX_Win_AutoInstaller.exe</a> in any location on your computer, wait for a terminal window to open, and a sequence of commands will execute. The installation process takes about 10 minutes. You don’t need to keep the window maximized (it can be minimized while the process runs). It’s also important to note that there will be text prompts during the execution, explaining what is happening at each stage.</p>  
+
+      <h3>Possible issues:</h3>
+      <ul>
+          <li>If the window closes instantly or within the first few seconds of execution, click again to run the installer.</li>
+          <li>If the page remains static on <span class="highlight">"Info"</span>, do not close the window, as the installation has not finished yet.</li>
+          <li>If you are working with VS Code, you will need to change the Python compiler to the pyenv compiler (always the latest version).</li>
+      </ul>
         
     <h2 id="installation">Manual Installation</h2>
     
