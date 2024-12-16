@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISARIC REDCap: Database Access & Data Entry Guide</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #f4f4f4;
+            padding: 15px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+        }
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+            max-width: 900px; /* Fixed width for the content */
+        }
+        .content h1, .content h2, .content h3 {
+            margin-top: 40px;
+        }
+        .content p, .content img {
+            max-width: 100%; /* Ensure paragraphs and images fit within the fixed width */
+        }
+        .sidebar a {
+            display: block;
+            padding: 10px;
+            color: #333;
+            text-decoration: none;
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+        .sidebar a:hover {
+            background-color: #ddd;
+        }
+        .footer {
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 15px;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+            margin-top: auto; /* Push the footer to the bottom */
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Contents</h2>
+        <a href="#introduction">Introduction</a>
+        <a href="#requestaccess">Request for access to a database</a>
+        <a href="#loggin">Logging into ISARIC REDCap</a>
+        <a href="#accessing">Accessing Your Project</a>
+        <a href="#side_bar">REDCap side bar</a>
+        <a href="#viewing_dashboards">Viewing the Record Status Dashboard </a>
+        <a href="#adding_newrecord">Adding a new record (participant)</a>
+        <a href="#enter_radio">Entering Data – Radio Button</a>
+        <a href="#enter_checkbox">Entering Data – Checkbox</a>
+        <a href="#enter_dropdown">Entering Data –  Dropdown fields</a>
+        <a href="#enter_missing">Entering Data – Missing codes</a>
+        <a href="#saving_form">Saving a form</a>
+        <a href="#view_participant_home">Viewing a participant Record Home Page</a>
+        <a href="#repeating_events">Data Entry –  adding Repeating Events</a>
+        <a href="#nav_repeating_events">Data Entry – Navigating Repeating Events</a>
+        <a href="#repeating_instruments">Data Entry –  adding Repeating Instruments </a>
+        <a href="#nav_repeating_instruments">Data Entry – navigating Repeating Instruments</a>
+        <a href="#deleting_forms">Deleting data - Forms</a>
+        <a href="#deleting_events">Deleting data - Events</a>
+        <a href="#deleting_record">Deleting data - Entire record (participant)</a>
+        <a href="#nav_dags">Navigating between several site (DAGs)</a>
+        <a href="#logging_out">Data Security – logging out</a>
+        <a href="#help">Help and additional resources</a>
+        
+
+        
+
+    </div>
+    <div class="content">
+        <h1>ISARIC REDCap: Database Access & Data Entry Guide</h1>
+        <h2 id="introduction">Introduction</h2>
+        <h3>1. Scope</h3>
+        <p>Databases hosted on the ISARIC instance of REDCap </p>
+        <h3>2. Purpose </h3>
+        <p>The purpose of this guide is to ensure: </p>
+        <ul>
+        <li>that the database is accessed only by delegated study staff, </li>
+        <li>that study staff are familiar with the functioning of the study database,</li>
+        <li>that data in the database is secure. </li>
+        </ul>
+        <h3>3. Responsibility</h3>
+        <p>The principal investigator is responsible to determine who has access to the study database. Study staff are responsible for protecting their access credentials, entering data to the database, and ensuring the accuracy of the data entered.</p>
+               
+        <h3>The ISARIC REDCap databases are accessible at <a href="https://ncov.medsci.ox.ac.uk/" target="_blank">https://ncov.medsci.ox.ac.uk</a></h3>
+        
+        <h2 id="loggin">Logging into  ISARIC REDCap</h2>
+        <p>Go to <a href="https://ncov.medsci.ox.ac.uk/" target="_blank">https://ncov.medsci.ox.ac.uk</a>- the link will be in the email you are sent</p>
+        <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/logging.jpg" alt="logging">
+        
+        
+        <ul>
+          <li>Mpox: <a href="https://isaric-bridge.replit.app/main/?param=Disease_Mpox" target="_blank">https://isaric-bridge.replit.app/main/?param=Disease_Mpox</a></li>
+          <li>Dengue: <a href="https://isaric-bridge.replit.app/main/?param=Disease_Dengue" target="_blank">https://isaric-bridge.replit.app/main/?param=Disease_Dengue</a></li>
+          <li>H5Nx: <a href="https://isaric-bridge.replit.app/main/?param=Disease_H5Nx" target="_blank">https://isaric-bridge.replit.app/main/?param=Disease_H5Nx</a></li>
+          <li>COVID: <a href="https://isaric-bridge.replit.app/main/?param=Disease_Covid" target="_blank">https://isaric-bridge.replit.app/main/?param=Disease_Covid</a></li>
+        </ul>
+
+        <video controls width="70%">
+            <source src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/crf_from_link.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        
+        <h2 id="templates">Templates</h2>
+        <p>Templates are pre-selected groups of questions. Users can click on the Templates tab and select those they want to include in the CRF.</p>
+        <p>ISARIC templates allow users to start the CRF creation process based on a set of pre-selected questions that ISARIC has curated for a particular disease or score.</p>
+        <p>Disease templates have been generated by the ISARIC network and have followed the CRF creation process that seeks to ensure that the questions included in such CRFs are adequate and sufficient to answer pertinent research questions. If you want to know more about the ISARIC creation process, please write to <a href="mailto:data@isaric.org">data@isaric.org</a>.</p>
+        <p>Score templates are subsets of questions necessary to compute commonly used clinical scores, for example, the Charlson Comorbidity Index or SOFA.</p>
+        <p>If multiple templates are selected, the obtained CRF is the union of the questions from all the selected templates.</p>
+        
+        <h2 id="fileTypes">BRIDGE Output Files</h2>
+        <p>BRIDGE generate the following files:</p>
+        <ul>
+            <li><strong>ISARIC Clinical Characterization XML:</strong> This file can be used to generate a REDCap project. It contains the clinical characterization structure that can be uploaded to REDCap to generate a project that allows data capture in the ARC structure.</li>
+            <li><strong>REDCap Data Dictionary:</strong> This file can be used to add the specific forms and questions selected in BRIDGE to the REDCap project.</li>
+            <li><strong>Paper-like CRF:</strong> This is a PDF file that can be printed and used to collect data manually, allowing sites that cannot capture data electronically to collect information that can later be uploaded to the REDCap database.</li>
+        </ul>
+
+        <h2 id="bridge-files">How to Use BRIDGE Generated Files</h2>
+        <p>As mentioned, BRIDGE generates three files:</p>
+        <ul>
+            <li><strong>ISARIC Clinical Characterization XML:</strong> This XML file can be used to create a project in REDCap. To do this, navigate to the 'Project Setup' section in REDCap, and under 'Design your data collection instruments & enable your project,' click on 'Upload Instrument Zip file' and upload the XML file generated by BRIDGE.</li>
+            <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/8_redcapxml.png" alt="REDCAP XML">
+            <li>This file creates a REDCap project with the following event structure:</li>
+            <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/Events_and_intruments.png" alt="Event_forms Structure">
+            <li><strong>REDCap Data Dictionary CSV:</strong> This CSV file can be used to update an existing REDCap project. Go to the 'Data Dictionary' section in REDCap, click 'Choose File,' and upload the CSV file generated by BRIDGE. Click 'Upload File' to apply the changes.</li>
+            <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/9_redcapcsv.png" alt="REDCAP CSV">
+            <li><strong>Paper-like CRF:</strong> This PDF file can be printed and used for manual data capture in sites that cannot collect data electronically. The collected data can later be entered into the REDCap database.</li>
+        </ul>
+         <div class="footer">
+        <p>
+            Licensed under a 
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0</a>
+            International License by 
+            <a href="https://isaric.org/" target="_blank">ISARIC</a>
+            on behalf of Oxford University.
+        </p>
+    </div>
+</body>
+</html>
