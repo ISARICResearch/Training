@@ -6,10 +6,10 @@
     <title>ISARIC REDCap: Database Access & Data Entry Guide</title>
     <style>
         body {
-            display: flex;
             font-family: Arial, sans-serif;
+            display: flex;
             margin: 0;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
+            overflow-x: hidden;
         }
         .sidebar {
             width: 250px;
@@ -20,70 +20,120 @@
             position: fixed;
             overflow-y: auto;
         }
-        .content {
-            margin-left: 270px;
-            padding: 20px;
-            max-width: 900px; /* Fixed width for the content */
-        }
-        .content h1, .content h2, .content h3 {
-            margin-top: 40px;
-        }
-        .content p, .content img {
-            max-width: 100%; /* Ensure paragraphs and images fit within the fixed width */
-        }
         .sidebar a {
             display: block;
             padding: 10px;
             color: #333;
             text-decoration: none;
-            margin-bottom: 5px;
             border-radius: 5px;
+            margin-bottom: 5px;
         }
         .sidebar a:hover {
             background-color: #ddd;
         }
-        .footer {
-            background-color: #f4f4f4;
-            text-align: center;
-            padding: 15px;
-            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-            margin-top: auto; /* Push the footer to the bottom */
+        .collapsible {
+            cursor: pointer;
+            font-weight: bold;
+            padding: 10px;
+            display: block;
+            color: #333;
+            background-color: #e0e0e0;
+            margin-top: 5px;
+            border-radius: 5px;
+        }
+        .collapsible + .content {
+            display: none; /* Initially hide content */
+            padding-left: 20px;
+        }
+        .collapsible.open + .content {
+            display: block; /* Show content when open class is toggled */
+        }
+        .content {
+            padding-left: 20px;
+        }
+        .content a {
+            margin-left: 15px;
+        }
+        .main-content {
+            margin-left: 270px;
+            padding: 20px;
+            max-width: 900px;
+        }
+        .main-content h1,  .main-content h2,  .main-content h3 {
+            margin-top: 40px;
+        }
+        .main-content p,  .main-content img {
+            max-width: 100%;
         }
     </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const collapsibles = document.querySelectorAll(".collapsible");
+            collapsibles.forEach(collapsible => {
+                collapsible.addEventListener("click", function () {
+                    this.classList.toggle("open"); // Toggle the 'open' class on click
+                });
+            });
+        });
+    </script>
 </head>
 <body>
+    <!-- Sidebar -->
     <div class="sidebar">
         <h2>Contents</h2>
-        <a href="#introduction">Introduction</a>
-        <a href="#requestaccess">Request for access to a database</a>
-        <a href="#loggin">Logging into ISARIC REDCap</a>
-        <a href="#accessing">Accessing Your Project</a>
-        <a href="#side_bar">REDCap side bar</a>
-        <a href="#viewing_dashboards">Viewing the Record Status Dashboard</a>
-        <a href="#adding_newrecord">Adding a new record (participant)</a>
-        <a href="#enter_radio">Entering Data – Radio Button</a>
-        <a href="#enter_checkbox">Entering Data – Checkbox</a>
-        <a href="#enter_dropdown">Entering Data –  Dropdown fields</a>
-        <a href="#enter_missing">Entering Data – Missing codes</a>
-        <a href="#saving_form">Saving a form</a>
-        <a href="#view_participant_home">Viewing a participant Record Home Page</a>
-        <a href="#out_range">Data Entry – results out of range</a>
-        <a href="#repeating_events">Data Entry –  adding Repeating Events</a>
-        <a href="#nav_repeating_events">Data Entry – Navigating Repeating Events</a>
-        <a href="#repeating_instruments">Data Entry –  adding Repeating Instruments </a>
-        <a href="#nav_repeating_instruments">Data Entry – navigating Repeating Instruments</a>
-        <a href="#deleting_forms">Deleting data - Forms</a>
-        <a href="#deleting_events">Deleting data - Events</a>
-        <a href="#deleting_record">Deleting data - Entire record (participant)</a>
-        <a href="#nav_dags">Navigating between several site (DAGs)</a>
-        <a href="#logging_out">Data Security – logging out</a>
-        <a href="#help">Help and additional resources</a>
-        
-
-        
-
+        <div>
+            <a href="#introduction">Introduction</a>
+            <a href="#requestaccess">Request for access to a database</a>
+            <a href="#loggin">Logging into ISARIC REDCap</a>
+            <a href="#accessing">Accessing Your Project</a>
+            <a href="#side_bar">REDCap side bar</a>
+            <a href="#viewing_dashboards">Viewing the Record Status Dashboard</a>
+            <a href="#adding_newrecord">Adding a new record (participant)</a>
+            
+            <!-- Collapsible Section 1 -->
+            <div class="collapsible-section">
+                <span class="collapsible">Entering Data</span>
+                <div class="content">
+                    <a href="#enter_radio">Radio Button</a>
+                    <a href="#enter_checkbox">Checkbox</a>
+                    <a href="#enter_dropdown">Dropdown Fields</a>
+                    <a href="#enter_missing">Missing Codes</a>
+                </div>
+            </div>
+            
+            <a href="#saving_form">Saving a Form</a>
+            <a href="#view_participant_home">Viewing a participant Record Home Page</a>
+            
+            <!-- Collapsible Section 2 -->
+            <div class="collapsible-section">
+                <span class="collapsible">Data Entry</span>
+                <div class="content">
+                    <a href="#out_range">Results out of range</a>
+                    <a href="#repeating_events">Adding Repeating Events</a>
+                    <a href="#nav_repeating_events">Navigating Repeating Events</a>
+                    <a href="#repeating_instruments">Adding Repeating Instruments</a>
+                    <a href="#nav_repeating_instruments">Navigating Repeating Instruments</a>
+                </div>
+            </div>
+            
+            <!-- Collapsible Section 3 -->
+            <div class="collapsible-section">
+                <span class="collapsible">Deleting Data</span>
+                <div class="content">
+                    <a href="#deleting_forms">Forms</a>
+                    <a href="#deleting_events">Events</a>
+                    <a href="#deleting_record">Entire record (participant)</a>
+                </div>
+            </div>
+            
+            <a href="#nav_dags">Navigating between several sites (DAGs)</a>
+            <a href="#logging_out">Data Security – logging out</a>
+            <a href="#help">Help and additional resources</a>
+        </div>
     </div>
-    <div class="content">
+
+
+    <div class="main-content">
         <h1>ISARIC REDCap: Database Access & Data Entry Guide</h1>
         <h2 id="introduction">Introduction</h2>
         <h3>1. Scope</h3>
