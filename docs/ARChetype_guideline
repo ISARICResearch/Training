@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISARIC CCP Case Report Form Creation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            colour: #333;
+        }
+        header {
+            background:  rgb(186, 2, 37);
+            colour: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        nav {
+            text-align: center;
+            padding: 10px;
+            background: #e0e0e0;
+        }
+        nav a {
+            text-decoration: none;
+            colour: #333;
+            padding: 8px 15px;
+            margin: 0 5px;
+            border-radius: 5px;
+        }
+        nav a:hover {
+            background: #ccc;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            colour: #003366;
+        }
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            border-left: 4px solid #003366;
+            margin-left: 20px;
+        }
+        .timeline-item {
+            background: #e8eff7;
+            padding: 15px;
+            border-radius: 6px;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -32px;
+            top: 15px;
+            width: 16px;
+            height: 16px;
+            background: #003366;
+            border-radius: 50%;
+        }
+        .timeline-item h3 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        .timeline-item p {
+            margin: 5px 0 0;
+            font-size: 0.95em;
+        }
+        .footer {
+            background: #003366;
+            colour: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>ISARIC CCP Case Report Form Creation</h1>
+    </header>
+
+    <nav>
+        <a href="#background">Background</a>
+        <a href="#objectives">Objectives</a>
+        <a href="#process">Process</a>
+    </nav>
+
+    <div class="container">
+        <section id="background">
+            <h2>Background</h2>
+            <p>
+                The ISARIC-WHO Clinical Characterisation Protocol (CCP) framework is a global, inclusive initiative offering a comprehensive approach for the rapid and standardised characterisation of (re)emerging infectious diseases. It supports researchers by providing standardised tools, ensuring consistent data collection and high-quality data. 
+                ISARIC also offers resources for data management and an automated pipeline for data analysis. Central coordination enhances communication and collaboration among researchers, leveraging a global network of ISARIC collaborators.
+            </p>
+        </section>
+
+        <section id="objectives">
+            <h2>Objectives</h2>
+            <p>
+                This document outlines ISARIC’s methodology for developing archetype CCP CRFs, detailing the stages from need identification to release and feedback mechanisms, adaptable to epidemic and disease contexts.
+            </p>
+        </section>
+
+        <section id="process">
+            <h2>Process</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>1. Identify the Need</h3>
+                    <p>Any ISARIC staff or research partner may propose a new CRF by submitting justification, requirements, and objectives to the ISARIC CCP team.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2. Endorsement of Action</h3>
+                    <p>The CCP Coordinator seeks endorsement from the ISARIC Executive Board (EB) if the topic is outside ISARIC’s usual scope, considering public health impact, research gaps, stakeholder engagement, and ISARIC’s unique contribution.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>3. Identify the CRF Owner and Approver</h3>
+                    <p>The CCP coordinator collaborates with the proposer to designate an Owner (oversight) and Approver (validation). The Approver must be an ISARIC member or partner.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>4. Identify Experts Reviewers</h3>
+                    <p>In consultation with the EB, relevant stakeholders, including experts, researchers, clinicians, and regulatory bodies, are invited for input, ensuring alignment with diverse requirements.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>5. Identify Relevant Literature and Projects</h3>
+                    <p>The Owner, supported by the CCP Coordinator, reviews existing literature, clinical trials, and guidelines to inform CRF development.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>6. WHO Consultation</h3>
+                    <p>The CCP Coordinator liaises with WHO to align the CRF with WHO’s initiatives and involve relevant parties in its development.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>7. Framing Research Questions and CRF Content</h3>
+                    <p>Research questions are defined, and relevant variables are mapped from the ISARIC Analysis and Research Compendium (ARC). Unstructured variables are drafted and submitted for ARC inclusion.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>8. Create First Draft CRF</h3>
+                    <p>The CRF Owner develops an initial version using ISARIC BRIDGE. It undergoes review and iteration with the Approver.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>9. Experts Review of First Draft</h3>
+                    <p>Experts Reviewers provide feedback via a shared platform. Contributors can add their names for attribution.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>10. CEPI Consultation</h3>
+                    <p>If relevant, the CRF is shared with CEPI for review and inclusion of variables valuable to CEPI's activities.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>11. Completion of First Draft CRF</h3>
+                    <p>After expert review, the Owner finalises the first draft with Approver endorsement before piloting.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>12. CRF Piloting</h3>
+                    <p>A REDCap project is set up to pilot the CRF. Feedback is collected and adjustments made.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>13. Completion of Final Version</h3>
+                    <p>After piloting, feedback is integrated, and the final version is endorsed by the Approver.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>14. Release</h3>
+                    <p>The final version is released as an archetype CRF and communicated through ISARIC channels.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="footer">
+        <p>© 2025 ISARIC. All rights reserved.</p>
+    </div>
+    
+</body>
+</html>
