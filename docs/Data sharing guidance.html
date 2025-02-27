@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data sharing guidance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #f4f4f4;
+            padding: 15px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+        }
+        .sidebar a {
+            display: block;
+            padding: 10px;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+        .sidebar a:hover {
+            background-color: #ddd;
+        }
+        .collapsible {
+            cursor: pointer;
+            font-weight: bold;
+            padding: 10px;
+            display: block;
+            color: #333;
+            background-color: #e0e0e0;
+            margin-top: 5px;
+            border-radius: 5px;
+        }
+        .collapsible + .content {
+            display: none; /* Initially hide content */
+            padding-left: 20px;
+        }
+        .collapsible.open + .content {
+            display: block; /* Show content when open class is toggled */
+        }
+        .content {
+            padding-left: 20px;
+        }
+        .content a {
+            margin-left: 15px;
+        }
+        .main-content {
+            margin-left: 270px;
+            padding: 20px;
+            max-width: 900px;
+        }
+        .main-content h1,  .main-content h2,  .main-content h3 {
+            margin-top: 40px;
+        }
+        .main-content p,  .main-content img {
+            max-width: 100%;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const collapsibles = document.querySelectorAll(".collapsible");
+            collapsibles.forEach(collapsible => {
+                collapsible.addEventListener("click", function () {
+                    this.classList.toggle("open"); // Toggle the 'open' class on click
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Contents</h2>
+        <div>
+            <a href="#introduction">Introduction</a>
+            <a href="#tos">STEP 1 : Signing Term of Submission </a>
+            <a href="#datadictionnary">STEP2 Sharing the Data Dictionary </a>
+             
+            
+            <!-- Collapsible Section 1 -->
+            <div class="collapsible-section">
+                <span class="collapsible">STEP 3 : Sharing the data</span>
+                <div class="content">
+                    <a href="#option1">OPTION 1: Provide Access to Your API</a>
+                    <a href="#option2">OPTION 2 :  Sharing securely a CSV file </a>
+             </div>
+            </div>
+            
+            
+    </div>
+
+
+    <div class="main-content">
+        <h1>Data sharing guidance</h1>
+        <h2 id="introduction">Introduction</h2>
+        <h3>1. Scope</h3>
+        <p>If you have collected data on your own instance of REDCap and wish to share it on the ISARIC Platform, please follow the steps below. </p>
+        <p>If you have collected your data on another electronic data capture system please contact us data@isaric.org </p>
+       
+        <h2 id="requestaccess">STEP 1 : Signing Terms of Data Submission</h2>
+        <p>Ensure that Terms of Data Submission are in place before proceeding.</p>
+  
+              
+    <div class="section">
+        <h2 id="accessing">STEP2 Sharing the Data Dictionary</h2>
+        <p>Share the data dictionary of your REDCap Project.</p>
+        <p>If you used BRIDGE to build your CRF it will be really useful if you can also share with us any change in name of the variable, name on the label or choices of answers. This impact the mapping of the data to integrate them in our data platform and it will be easier with those changes are clearly identified.</p>
+        <p>How do download the Data Dictionary ? </p>
+        <p>On the menu click on “Dictionary” then click on “Download the current Data Dictionnary”</p>
+        <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/datasharing_dictionnary.jpg" alt="access">
+        
+    </div>
+    
+    <div class="section">
+        <h2 id="side_bar">STEP 3 : Sharing the datar</h2>
+         <p>There are two options for sharing the data with us: either by providing access to your API or by securely sharing the data in a CSV file.</p>
+     </div>
+    <div class="section">
+        <h2 id="viewing_dashboards">OPTION 1: Provide Access to Your API</h2>
+        <p>We can access your data directly through the REDCap API. To do this, you will need to:</p>
+            <li>1.	Add the ISARIC data manager as a user on your REDCap instance.</li>
+            <li>2.	Grant them access to your database.</li>
+            <li>3.	Generate an API token for them to enable access.</li>
+            <p>Detailed instructions are provided below.: </p>
+            <li>1.	Add the ISARIC data manager as a new user on your REDCap instance</p>
+        <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/viewing_dashboards.jpg" alt="viewing_dashboards">
+
+        <li>Displays all the records of your site​</li>
+        <li>Shows the instruments (forms) and the events (time points) to which they have been assigned in a longitudinal study​</li>
+        <li>Gives an overview of the progress of all your participants</li>
+        <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/viewing_dashboards.jpg" alt="viewing_dashboards">
+    </div>
+    <div class="section">
+        <h2 id="adding_newrecord">OPTION 2 :  Sharing securely a CSV file</h2>
+        <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/adding_newrecord_1.jpg" alt="adding_newrecord_1">
+        <h3>Incrementing the PIN</h3>
+        <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/adding_newrecord_2.jpg" alt="adding_newrecord_2">
+
+        <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/adding_newrecord_3.jpg" alt="adding_newrecord_3">
+    </div>
+    
+         <div class="footer">
+        <p>
+            Licensed under a 
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0</a>
+            International License by 
+            <a href="https://isaric.org/" target="_blank">ISARIC</a>
+            on behalf of Oxford University.
+        </p>
+    </div>
+</body>
+</html>
