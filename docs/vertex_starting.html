@@ -65,144 +65,129 @@
 </head>
 
 <body>
-    <p>This page is currently being updated. Please check back soon!</p>
-<!--     <div class="sidebar">
+<div class="sidebar">
     <h2><a href="https://isaricresearch.github.io/Training/">Home</a></h2>
     <div style="padding-left:10px">
         <h2>Contents</h2>
+        <a href="#purpose">Purpose</a>
         <a href="#introduction">Introduction</a>
-        <a href="#auto_install">Automatic installation</a>
-        <a href="#installation">Manual installation</a>
-        <a href="#dashboard_script">Running the dashboard script</a>
+        <a href="#installation-usage">Installation and usage</a>
         <a href="#dashboard">VERTEX dashboard</a>
-        <a href="#insight_panels">Insight panels</a>
         <a href="#next_steps">Next steps</a>
     </div>
     </div>
     <div class="content">
-    
+
     <h1 id="getting_started">Getting Started with VERTEX</h1>
-    
+
+    <h2 id="purpose">Purpose</h2>
+
+    <p>This guide provides a brief introduction to the Visual Evidence & Research Tool for Exploration (VERTEX) dashboard and the Reusable Analytical Pipelines for Infectious Diseases (RAPID) code framework. It provides instructions for how to run the base VERTEX software on your local machine.</p>
+
     <h2 id="introduction">Introduction</h2>
-    
-    <p>VERTEX (Visual Evidence & Research Tool for Exploration) is a web-based application that presents graphs and tables relating to research questions that need to be quickly answered during an outbreak. This helps identification of key epidemiological factors and facilitates data-driven decision-making.</p>
-    
-    <video loop controls autoplay muted>
-        <source src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/vertex.mp4" type="video/mp4">
-    </video>
 
-    <p>VERTEX is built using blocks of code, which we call <strong>reproducible analytical pipelines</strong> (RAPs). RAPs are used to create visualisations, graphs and tables, each of which we call an <strong>insight</strong>. Insights are grouped together in an <strong>insight panel</strong> to provide information about one study endpoint relating to a particular research question. You will learn more about RAPs and insight panels in this guide and in the following VERTEX guides.</p>
+    <p>VERTEX is a web-based Python<sup>1</sup> application that presents graphs and tables relating to research questions that need to be quickly answered during an outbreak. This helps identification of key epidemiological factors and supports data-driven decision-making.</p>
 
-    <p>At the moment, we have insight panels for the following research questions:
-    <ul>
-        <li>What are the characteristics and clinical presentation of patients with ... at hospital admission?</li>
-        <li>What are the outcomes within ... days of presentation, and what are the risk factors associated with these outcomes?</li>
-        <li>What treatments are administered to patients with ... during their observation period?</li>
-    </ul>
-    New questions will be added by the ISARIC team and the wider scientific community, enabling the creation and sharing of new RAPs and insight panels.</p>
-    
-    <p>This guide will help you set up a VERTEX dashboard on your local machine, and explore the existing pipelines.</p>
+    <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/vertex_starting-insight-panel.png" alt="VERTEX">
 
-    <h2 id="auto_install">Automatic Installation</h2>
+    <p>VERTEX is open-source, which means that you can access and download the codebase from GitHub<sup>2</sup>, and create new analysis projects for your analysis. At the moment, the VERTEX dashboard can display two types of projects.</p>
 
-    <p>Download and run the installer file <a href="https://github.com/ISARICResearch/VERTEX/raw/main/VERTEX_Win_AutoInstaller.exe"><samp>VERTEX_Win_AutoInstaller.exe</samp></a> in any location on your computer. Wait for a terminal window to open, and a sequence of commands will execute. The installation process takes about 10 minutes. You don't need to keep the window maximized (it can be minimized while the process runs).</p>  
-    
-    <h3>Possible issues:</h3>
-    <ul>
-        <li>If the window closes instantly or within the first few seconds of execution, click again to run the installer.</li>
-        <li>If the page remains static on <span class="highlight">"Info"</span>, do not close the window, as the installation has not finished yet.</li>
-        <li>If you are working with VS Code, you will need to change the Python compiler to the pyenv compiler (always the latest version).</li>
-    </ul>
-        
-    <h2 id="installation">Manual Installation</h2>
-    
-    <h3 id="cloning">Cloning the repository</h3>
-    
-    <p>First, clone the VERTEX GitHub repository. If you have <a href="https://github.com/git-guides/install-git">git</a> already installed then, at the command line:</p>
+    <p><strong>Analysis projects</strong> retrieve data from a REDCap database using the API, preprocess this patient-level data<sup>3</sup> and execute analysis code to answer research questions from a statistical analysis plan. The output of this analysis code is a series of figures and tables, which are presented in the dashboard, grouped together in <strong>insight panels</strong>.</p>
 
-    <pre><code>git clone https://github.com/ISARICResearch/VERTEX.git</code></pre>
-    
-    <p>You can also download the repository manually, by clicking on the green button "Code" in the VERTEX GitHub repository, then on "Download ZIP".</p>
-    
-    <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/16_github.png" alt="GitHub">
-    
-    <p>This will create a local version of the repository on your machine.</p>
-    
-    <p>If you used git, this repository will be in your current working directory, named VERTEX. Navigate to the repository, at the command line:</p>
-    
-    <pre><code>cd VERTEX</code></pre>
-    
-    <p>If you downloaded the repository manually, this repository will be in your Downloads folder, named VERTEX-main. Click into this folder.</p>
+    <p>For structuring analysis code, we borrow a concept called Reproducible Analytical Pipelines<sup>4</sup>. This is intended to make analysis reproducible, efficient and auditable. We extend this concept to <strong>Reusable Analytical Pipelines for Infectious Diseases (RAPIDs)</strong><sup>5</sup>, which supports the transportation of these pipelines to answer the similar research questions in similar contexts.</p>
 
-    <p>VERTEX is a tool based on Python code. Please ensure you have <a href="https://www.python.org/downloads/">Python</a> installed on your machine. You can check which version of Python you currently have installed, at the command line:</p>
-    
-    <pre><code>python --version</code></pre>
-    
-    <p>Install the dependencies using the <a href="https://github.com/ISARICResearch/VERTEX/blob/main/requirements.txt.py"><samp>requirements.txt</samp></a> file. If you are currently working on several projects, you may want to create a new environment for VERTEX. You may want to use environment management software such as <a href="https://www.docker.com">Docker</a> or <a href="https://docs.conda.io/en/latest/Conda">Conda</a>.</p>
-    
-    <pre><code>python3 -m pip install -r requirements.txt</code></pre>
-    
-    <h2 id="config_file">Modifying the config file</h2>
-    
-    <p>If you want VERTEX to run using a REDCap database, you need to modify the file called <a href="https://github.com/ISARICResearch/VERTEX/blob/main/redcap_config.py"><samp>redcap_config.py</samp></a> to include your REDCap API token. The API token currently in this file is for a small low-fidelity synthetic dataset (fake data) hosted in an ISARIC REDCap project.</p>
-    
-    <p>If your database contains real patient data, then is vitally important that you <strong>do not share this API token</strong>, as others may be able to access your data if you do so. The easiest way to avoid this scenario is if you do not share your version of the <samp>redcap_config.py</samp>, once you've updated this.</p>
-    
-    <p>You should also change the REDCap url to your institution's REDCap URL and provide site codes for all sites in your database. VERTEX currently assumes the subject IDs are formatted as <samp>xxxxx-yyyyy</samp> where <samp>xxxxx</samp> is the site code listed and <samp>yyyyy</samp> is the patient number for that site, as ISARIC standard procedure.</p>
-    
-    <p>If this is not the case for your REDCap project, or if you do not know how to access the details needed for the config file, then please get in touch at <a href="mailto:data@isaric.org">data@isaric.org</a> and we will help you to modify this.</p>
+    <p><strong>Static projects</strong> do not execute the analysis pipelines, but reproduce the figures and tables directly from aggregated (not patient-level) data files<sup>6</sup>. These files can be provided directly or can be automatically created when the users runs an analysis project.</p>
 
-    <pre><code>redcap_api_key='BCC83FD05676798456262ED4883FD85C'
-redcap_url='https://ncov.medsci.ox.ac.uk/api/'
-site_mapping={'00000':'COL',
-              '00001':'GBR',
-              '00002':'CAN',
-              '00003':'KEN',
-              '00004':'FRA',
-              '00005':'POL',
-              '00006':'UGA',
-              '00007':'RWA',
-              '00008':'BRA',
-              '00009':'NLD'}</code></pre>
-    
-    <h2 id="dashboard_script">Running the dashboard script</h2>
+    <p><small>
+        <sup>1</sup>We have had feedback from some users that they use R as a programming language and are not very familiar with Python. We acknowledge this tool will not be easy to use if you are only an R user. Unfortunately we are not able to support integration of R code at the moment, but we will revisit this when we can. We can help to support your analysis in the meantime.
+        <br>
+        <sup>2</sup><a href="https://github.com/ISARICResearch/VERTEX/blob/main/README.md">https://github.com/ISARICResearch/VERTEX/blob/main/README.md</a>
+        <br>
+        <sup>3</sup>We must make some assumptions about the structure of the REDCap project and a core subset of the variables within the data, which are described later in this guide.
+        <br>
+        <sup>4</sup><a href="https://analysisfunction.civilservice.gov.uk/support/reproducible-analytical-pipelines/">https://analysisfunction.civilservice.gov.uk/support/reproducible-analytical-pipelines/</a>
+        <br>
+        <sup>5</sup>We are currently developing a standalone package to support the development of RAPIDs. This is intended to make development of pipelines more user-friendly and to include more detailed documentation and testing. Users will initially be able to customise or develop analysis code outside of the VERTEX dashboard, but can still integrate the outputs within the dashboard.
+        <br>
+        <sup>6</sup>Each type of figure requires aggregated data in a specific structure, with accompanying metadata to provide other input parameters. We are currently refining this, so we do not have up-to-date documentation about each figure type. However, we can support this if you have aggregated data and you want to present results within a dashboard.
+    </small></p>
 
-    <p>After the installation of VERTEX is complete, open a terminal or a code editor and run the following command. If you have downloaded VERTEX manually, you should run this from within the VERTEX repository.</p>
-        
-    <pre><code>descriptive_dashboard.py</code></pre>
-    
-    <p>The VERTEX dashboard will now be running. The program will print output including the following: <samp>Dash is running on http://xxx.x.x.x:xxxx/</samp>, where each <samp>x</samp> is replaced by a number. The default URL is <a href="http://127.0.0.1:8050" target="_blank">http://127.0.0.1:8050</a>. Copy this http address into your web browser to open the dashboard.</p>
-        
-    <h2 id="dashboard">VERTEX dashboard</h2>
-    
-    <p>The VERTEX dashboard is an interactive map with a menu for accessing insight panels. The first item in the menu is <strong>Filters and Controls</strong>, which can be used to filter the displayed data according to Gender, Age, Outcome, and Country (A). Each of the other items in the menu represents on a key research question (B). Within an item, there are items for each study endpoint associated with this research question. Clicking on one of these items will bring up the insight panel for this endpoint. Countries with patients in the data is highlighted on the map, with the colour indicating how many patients are from each country (C).</p>
-    
-    <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/10_vertex.png" alt="VERTEX structure">
-    
-    <h2 id="insight_panels">Insight panels</h2>
-    
-    <p>Insight panels show visualisations relevant to a particular study endpoint. An insight panel contains another <strong>Filters and Controls</strong> setting (D), a list of all insights for the endpoint (E), a visualisation or table for the selected insight (F), and <strong>About</strong> and <strong>Instructions</strong> buttons for further information (G).</p>
-    
-    <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/17_insights.png" alt="VERTEX structure">
-    
-<!--     <p>The VERTEX dashboard includes default insight panels:</p>
+    <h2 id="installation-usage">Installation and usage</h2>
 
-    <ul>
-    <li>Characterisation
-      <ul>
-        <li>Clinical features</li>
-      </ul></li>
-    <li>Risk/Prognosis
-      <ul>
-        <li>Clinical features by patient outcome</li>
-        <li>Risk factors for patient outcomes</li>
-      </ul></li>
-    </ul>
+    <p>To use VERTEX locally, clone the VERTEX GitHub repository<sup>7</sup> and make sure that you have <samp>Python</samp> installed. There are several ways to run the VERTEX code, and depending on how your preferences for coding, you may also find it useful to have the following installed: git, Docker and VSCode.</p>
+
+    <p>We will demonstrate how to run the code at the command line using Docker and in VSCode without Docker, though we recommend using Docker if possible<sup>8</sup>.</p>
+
+    <h3 id="docker">Docker at the command line</h3>
+
+    <p>On the command line, navigate to the repository. Depending on how you cloned the repository, this may be in your Downloads folder or in the current working directory.</p>
+
+    <p>We recommend using Docker if you want to run VERTEX at the command line. You can build and run a Docker container for VERTEX with the following:</p>
+
+    <pre><code>docker build -t isaric-vertex .
+    <br>docker run -it --rm -v "$PWD":/app -p 8050:8050 isaric-vertex gunicorn --workers 1 --reload --bind 0.0.0.0:8050 vertex.descriptive_dashboard:server</code></pre>
+
+    <h3 id="docker">VSCode without Docker</h3>
+
+    <p>Open the VERTEX folder within VSCode. You need to create an environment<sup>9</sup> from the VERTEX requirements. The simplest way to do this is <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>p</kbd> (or <kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>p</kbd> on MacOS), then click "Python: Create environment...", ".venv" and choose a Python version that is >3.9. This will install a virtual environment using the requirements listed in <samp>pyproject.toml</samp>.</p>
+
+    <p>Next, you need to add a file <samp>.vscode/launch.json</samp> with the following:
+
+    <pre><code>
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "ISARIC VERTEX",
+      "type": "python",
+      "request": "launch",
+      "module": "vertex.descriptive_dashboard",
+      "justMyCode": false,
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      }
+    }
+  ]
+}
+    </code></pre>
+
+    <p>You should now be able to run the application in debugging mode ("Run &rarr; Start Debugging") or without debugging ("Run &rarr; Run Without Debugging").</p>
+
+    <p><small>
+        <sup>7</sup><a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository">https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository</a>
+        <br>
+        <sup>8</sup>See <a href="https://code.visualstudio.com/docs/containers/overview">https://code.visualstudio.com/docs/containers/overview</a> for using Docker within VSCode.
+        <br>
+        <sup>9</sup><a href="https://code.visualstudio.com/docs/python/environments">https://code.visualstudio.com/docs/python/environments</a>
+    </small></p>
+
+    <h2 href="#dashboard">VERTEX dashboard</h2>
+
+    <p>Once the application is running at the terminal or in VSCode, you will be able to open the local VERTEX dashboard at http://127.0.0.1:8050. You will see a menu on the left, and a world map with a colorbar.</p>
+
+    <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/vertex_starting-dashboard.png" alt="VERTEX dashboard">
+
+    <p>At the top of the menu is listed the current open project. You can switch between active projects using the dropdown immediately below. The current active projects are <strong>analysis projects</strong> that use low-fidelity synthetic datasets and <strong>static projects</strong> showing the results from completed ISARIC analyses.</p>
+
+    <p>The map shows the number of participants that were enrolled in this project by country. You can hover over each country for a more precise count of the number of participants.</p>
+
+    <p>Below the project selection box in the menu are a set of tabs, which are mostly specific to the selected project. <strong>Analysis projects</strong>, which retrieve the up-to-date patient-level data from a REDCap database and directly execute analysis code, have a tab called <strong>Filters and Controls</strong>. If you click on this, it will open up to show
+    a set of core variables: sex at birth, age, country, admission date and outcome. You can select different combinations, which will filter the patient-level data and update the map accordingly.</p>
+
+    <p>For all projects, the remaining tabs should each be relevant to a research question or a moment/event in the patient's journey. Each tab can be expanded to show one or more buttons, which may break this down further into group of related variables e.g. demographics and comorbidities. Each button will then open an object called an <strong>insight panel</strong>.</p>
+
+    <p>Insight panels show the outputs of an analysis pipeline. At this time, this will mostly involve descriptive tables and summary figures displaying counts or proportions. We will continue to add new analyses as we build a larger collection of RAPIDs. As with the base page, <strong>analysis projects</strong> will have a tab for <strong>Filters and Controls</strong> and the code will be executed again if you filter the participants. This is not possible for <strong>static projects</strong>, which display fixed outputs.</p>
+
+    <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/vertex_starting-insight-panel.png" alt="Insight panels">
 
     <h2 id="next_steps">Next steps</h2>
-    
-    <p>For a more detailed guide in writing new reproducible analytic pipelines (RAPs) for VERTEX, please refer to the <a href="https://isaricresearch.github.io/Training/insight_panel.html">insight panel guide</a>.</p>
-     -->
+
+    <p>This guide has introduced VERTEX and how to run the code locally.</p>
+
+    <p>VERTEX is intended to run multiple projects. If you have REDCap database that was created using ISARIC BRIDGE and have API access for your database, then you should be able add a new project to your local VERTEX and display outputs from your analysis in a similar manner to the existing projects.</p>
+
+    <p>For more detailed guides in creating new projects in VERTEX and developing new RAPIDs, please refer to the following guides: <a href="https://isaricresearch.github.io/Training/insight_panel.html">Creating a new VERTEX project</a> and <a href="https://isaricresearch.github.io/Training/insight_panel.html">Creating a new insight panel</a>.</p>
+
     <div class="footer">
         <p>Licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0</a> International License by  <a href="https://isaric.org/" target="_blank">ISARIC</a> on behalf of Oxford University.</p>
     </div>
