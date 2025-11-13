@@ -86,37 +86,35 @@
 
     <h2 id="introduction">Introduction</h2>
 
-    <p>VERTEX is a web-based Python<sup>1</sup> application that presents graphs and tables relating to research questions that need to be quickly answered during an outbreak. This helps identification of key epidemiological factors and supports data-driven decision-making.</p>
+    <p>VERTEX is a web-based Python application that presents graphs and tables relating to research questions that need to be quickly answered during an outbreak. This helps identification of key epidemiological factors and supports data-driven decision-making.</p>
 
     <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/vertex_starting-insight-panel.png" alt="VERTEX">
 
-    <p>VERTEX is open-source, which means that you can access and download the codebase from GitHub<sup>2</sup>, and create new analysis projects for your analysis. At the moment, the VERTEX dashboard can display two types of projects.</p>
+    <p>VERTEX is open-source, which means that you can access and download the codebase from GitHub<sup>1</sup>, and create new analysis projects for your analysis. At the moment, the VERTEX dashboard can display two types of projects.</p>
 
-    <p><strong>Analysis projects</strong> retrieve data from a REDCap database using the API, preprocess this patient-level data<sup>3</sup> and execute analysis code to answer research questions from a statistical analysis plan. The output of this analysis code is a series of figures and tables, which are presented in the dashboard, grouped together in <strong>insight panels</strong>.</p>
+    <p><strong>Analysis projects</strong> retrieve data from a REDCap database using the API, preprocess this patient-level data<sup>2</sup> and execute analysis code to answer research questions from a statistical analysis plan. The output of this analysis code is a series of figures and tables, which are presented in the dashboard, grouped together in <strong>insight panels</strong>.</p>
 
-    <p>For structuring analysis code, we borrow a concept called Reproducible Analytical Pipelines<sup>4</sup>. This is intended to make analysis reproducible, efficient and auditable. We extend this concept to <strong>Reusable Analytical Pipelines for Infectious Diseases (RAPIDs)</strong><sup>5</sup>, which supports the transportation of these pipelines to answer the similar research questions in similar contexts.</p>
+    <p>For structuring analysis code, we borrow a concept called Reproducible Analytical Pipelines<sup>4</sup>. This is intended to make analysis reproducible, efficient and auditable. We extend this concept to <strong>Reusable Analytical Pipelines for Infectious Diseases (RAPIDs)</strong><sup>4</sup>, which supports the transportation of these pipelines to answer the similar research questions in similar contexts.</p>
 
-    <p><strong>Static projects</strong> do not execute the analysis pipelines, but reproduce the figures and tables directly from aggregated (not patient-level) data files<sup>6</sup>. These files can be provided directly or can be automatically created when the users runs an analysis project.</p>
+    <p><strong>Static projects</strong> do not execute the analysis pipelines, but reproduce the figures and tables directly from aggregated (not patient-level) data files<sup>5</sup>. These files can be provided directly or can be automatically created when the users runs an analysis project.</p>
 
     <p><small>
-        <sup>1</sup>We have had feedback from some users that they use R as a programming language and are not very familiar with Python. We acknowledge this tool will not be easy to use if you are only an R user. Unfortunately we are not able to support integration of R code at the moment, but we will revisit this when we can. We can help to support your analysis in the meantime.
+        <sup>1</sup><a href="https://github.com/ISARICResearch/VERTEX/blob/main/README.md">https://github.com/ISARICResearch/VERTEX/blob/main/README.md</a>
         <br>
-        <sup>2</sup><a href="https://github.com/ISARICResearch/VERTEX/blob/main/README.md">https://github.com/ISARICResearch/VERTEX/blob/main/README.md</a>
+        <sup>2</sup>We make some assumptions about the structure of the REDCap project and a core subset of the variables within the data, this is described further in the follow-up training guides listed at the end.
         <br>
-        <sup>3</sup>We must make some assumptions about the structure of the REDCap project and a core subset of the variables within the data, which are described later in this guide.
+        <sup>3</sup><a href="https://analysisfunction.civilservice.gov.uk/support/reproducible-analytical-pipelines/">https://analysisfunction.civilservice.gov.uk/support/reproducible-analytical-pipelines/</a>
         <br>
-        <sup>4</sup><a href="https://analysisfunction.civilservice.gov.uk/support/reproducible-analytical-pipelines/">https://analysisfunction.civilservice.gov.uk/support/reproducible-analytical-pipelines/</a>
+        <sup>4</sup>We are currently developing a standalone package to support the development of RAPIDs. This is intended to make development of pipelines more user-friendly and to include more detailed documentation and testing. Users will initially be able to customise or develop analysis code outside of the VERTEX dashboard, but can still integrate the outputs within the dashboard.
         <br>
-        <sup>5</sup>We are currently developing a standalone package to support the development of RAPIDs. This is intended to make development of pipelines more user-friendly and to include more detailed documentation and testing. Users will initially be able to customise or develop analysis code outside of the VERTEX dashboard, but can still integrate the outputs within the dashboard.
-        <br>
-        <sup>6</sup>Each type of figure requires aggregated data in a specific structure, with accompanying metadata to provide other input parameters. We are currently refining this, so we do not have up-to-date documentation about each figure type. However, we can support this if you have aggregated data and you want to present results within a dashboard.
+        <sup>5</sup>Each type of figure requires aggregated data in a specific structure, with accompanying metadata to provide other input parameters. We are currently refining this, so we do not have up-to-date documentation about each figure type. However, we can support this if you have aggregated data and you want to present results within a dashboard.
     </small></p>
 
     <h2 id="installation-usage">Installation and usage</h2>
 
-    <p>To use VERTEX locally, clone the VERTEX GitHub repository<sup>7</sup> and make sure that you have <samp>Python</samp> installed. There are several ways to run the VERTEX code, and depending on how your preferences for coding, you may also find it useful to have the following installed: git, Docker and VSCode.</p>
+    <p>To use VERTEX locally, clone the VERTEX GitHub repository<sup>6</sup> and make sure that you have <samp>Python</samp> installed. There are several ways to run the VERTEX code, and depending on how your preferences for coding, you may also find it useful to have the following installed: git, Docker and VSCode.</p>
 
-    <p>We will demonstrate how to run the code at the command line using Docker and in VSCode without Docker, though we recommend using Docker if possible<sup>8</sup>.</p>
+    <p>We will demonstrate how to run the code at the command line using Docker and in VSCode without Docker, though we recommend using Docker if possible<sup>7</sup>.</p>
 
     <h3 id="docker">Docker at the command line</h3>
 
@@ -129,7 +127,7 @@
 
     <h3 id="docker">VSCode without Docker</h3>
 
-    <p>Open the VERTEX folder within VSCode. You need to create an environment<sup>9</sup> from the VERTEX requirements. The simplest way to do this is <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>p</kbd> (or <kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>p</kbd> on MacOS), then click "Python: Create environment...", ".venv" and choose a Python version that is >3.9. This will install a virtual environment using the requirements listed in <samp>pyproject.toml</samp>.</p>
+    <p>Open the VERTEX folder within VSCode. You need to create an environment<sup>8</sup> from the VERTEX requirements. The simplest way to do this is <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>p</kbd> (or <kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>p</kbd> on MacOS), then click "Python: Create environment...", ".venv" and choose a Python version that is >3.9. This will install a virtual environment using the requirements listed in <samp>pyproject.toml</samp>.</p>
 
     <p>Next, you need to add a file <samp>.vscode/launch.json</samp> with the following:
 
@@ -154,11 +152,11 @@
     <p>You should now be able to run the application in debugging mode ("Run &rarr; Start Debugging") or without debugging ("Run &rarr; Run Without Debugging").</p>
 
     <p><small>
-        <sup>7</sup><a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository">https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository</a>
+        <sup>6</sup><a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository">https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository</a>
         <br>
-        <sup>8</sup>See <a href="https://code.visualstudio.com/docs/containers/overview">https://code.visualstudio.com/docs/containers/overview</a> for using Docker within VSCode.
+        <sup>7</sup>See <a href="https://code.visualstudio.com/docs/containers/overview">https://code.visualstudio.com/docs/containers/overview</a> for using Docker within VSCode.
         <br>
-        <sup>9</sup><a href="https://code.visualstudio.com/docs/python/environments">https://code.visualstudio.com/docs/python/environments</a>
+        <sup>8</sup><a href="https://code.visualstudio.com/docs/python/environments">https://code.visualstudio.com/docs/python/environments</a>
     </small></p>
 
     <h2 href="#dashboard">VERTEX dashboard</h2>
