@@ -112,9 +112,9 @@
 
     <h2 id="installation-usage">Installation and usage</h2>
 
-    <p>To use VERTEX locally, clone the VERTEX GitHub repository<sup>6</sup> and make sure that you have <samp>Python</samp> installed. There are several ways to run the VERTEX code, and depending on how your preferences for coding, you may also find it useful to have the following installed: git, Docker and VSCode.</p>
+    <p>To use VERTEX locally, clone the VERTEX GitHub repository<sup>6</sup> and make sure that you have Python installed. There are several ways to run the VERTEX code, and depending on how your preferences for coding, you may also find it useful to have the following installed: git<sup>7</sup>, Docker<sup>8</sup> and VSCode<sup>9</sup>.</p>
 
-    <p>We will demonstrate how to run the code at the command line using Docker and in VSCode without Docker, though we recommend using Docker if possible<sup>7</sup>.</p>
+    <p>We will demonstrate how to run the code at the command line using Docker and in VSCode without Docker, though we recommend using Docker if possible<sup>10</sup>.</p>
 
     <h3 id="docker">Docker at the command line</h3>
 
@@ -127,7 +127,7 @@
 
     <h3 id="docker">VSCode without Docker</h3>
 
-    <p>Open the VERTEX folder within VSCode. You need to create an environment<sup>8</sup> from the VERTEX requirements. The simplest way to do this is <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>p</kbd> (or <kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>p</kbd> on MacOS), then click "Python: Create environment...", ".venv" and choose a Python version that is >3.9. This will install a virtual environment using the requirements listed in <samp>pyproject.toml</samp>.</p>
+    <p>Open the VERTEX folder within VSCode. You need to create an environment<sup>11</sup> from the VERTEX requirements. The simplest way to do this is <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>p</kbd> (or <kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>p</kbd> on MacOS), then click "Python: Create environment...", ".venv" and choose a Python version that is >3.9. This will install a virtual environment using the requirements listed in <samp>pyproject.toml</samp>.</p>
 
     <p>Next, you need to add a file <samp>.vscode/launch.json</samp> with the following:
 
@@ -154,9 +154,15 @@
     <p><small>
         <sup>6</sup><a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository">https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository</a>
         <br>
-        <sup>7</sup>See <a href="https://code.visualstudio.com/docs/containers/overview">https://code.visualstudio.com/docs/containers/overview</a> for using Docker within VSCode.
+        <sup>7</sup><a href="https://git-scm.com/install/">https://git-scm.com/install/</a>
         <br>
-        <sup>8</sup><a href="https://code.visualstudio.com/docs/python/environments">https://code.visualstudio.com/docs/python/environments</a>
+        <sup>8</sup><a href="https://docs.docker.com/engine/install/">https://docs.docker.com/engine/install/</a>
+        <br>
+        <sup>9</sup><a href="https://code.visualstudio.com/docs/languages/python">https://code.visualstudio.com/docs/languages/python</a>
+        <br>
+        <sup>10</sup>See <a href="https://code.visualstudio.com/docs/containers/overview">https://code.visualstudio.com/docs/containers/overview</a> for using Docker within VSCode.
+        <br>
+        <sup>11</sup><a href="https://code.visualstudio.com/docs/python/environments">https://code.visualstudio.com/docs/python/environments</a>
     </small></p>
 
     <h2 href="#dashboard">VERTEX dashboard</h2>
@@ -184,7 +190,7 @@
 
     <p>VERTEX is intended to run multiple projects. If you have REDCap database that was created using ISARIC BRIDGE and have API access for your database, then you should be able add a new project to your local VERTEX and display outputs from your analysis in a similar manner to the existing projects.</p>
 
-    <p>For more detailed guides in creating new projects in VERTEX and developing new RAPIDs, please refer to the following guides: <a href="https://isaricresearch.github.io/Training/insight_panel.html">Creating a new VERTEX project</a> and <a href="https://isaricresearch.github.io/Training/insight_panel.html">Creating a new insight panel</a>.</p>
+    <p>For more information about creating a new project in VERTEX, please refer to the following guides: <a href="https://isaricresearch.github.io/Training/vertex_new_project.html">Creating a new VERTEX project</a>. We will add more detailed technical guides about creating new insight panels and contributing to RAPIDs in due course.</p>
 
     <div class="footer">
         <p>Licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0</a> International License by  <a href="https://isaric.org/" target="_blank">ISARIC</a> on behalf of Oxford University.</p>
