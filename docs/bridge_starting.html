@@ -31,6 +31,14 @@
         .content p, .content img {
             max-width: 100%; /* Ensure paragraphs and images fit within the fixed width */
         }
+        .content figure {
+            margin: 1em 0;
+        }
+        .content figcaption {
+            color: #555;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
         .sidebar a {
             display: block;
             padding: 10px;
@@ -55,6 +63,7 @@
     <div class="sidebar">
         <h2>Contents</h2>
         <a href="#introduction">Introduction</a>
+        <a href="#quick-start">Quick Start</a>
         <a href="#structure">Structure</a>
         <a href="#settings">Settings</a>
         <a href="#templates">Templates</a>
@@ -68,66 +77,116 @@
         <p>Access ISARIC BRIDGE web application here: <a href="https://bridge.isaric.org/">BRIDGE</a></p>
         
         <h2 id="introduction">Introduction</h2>
-        <p>BRIDGE is an <a href="https://isaric.org/">ISARIC</a> developed web application that assists in the creation of Clinical Report Forms (CRFs). It is based on <a href="https://github.com/ISARICResearch/DataPlatform/tree/main/ARCH">ARC.</a> </p>
-        <p>ARC is a comprehensive machine-readable document in CSV format, designed for use in Clinical Report Forms (CRFs) during disease outbreaks. It includes a library of questions covering demographics, comorbidities, symptoms, medications, and outcomes. Each question is based on a standardized schema, has specific definitions mapped to controlled terminologies, and has built-in quality control. ARC is openly accessible, with version control via GitHub ensuring document integrity and collaboration.</p>
-        <p>BRIDGE is a web-based application designed to operationalize ARC and edit any ISARIC CRF and tailor it to an outbreak's particular context. By selecting and customizing clinical questions and ensuring necessary data points for each, BRIDGE automates the creation of Case Report Forms (CRFs) for each disease and specific research context. It generates the data dictionary and XML needed to create a REDCap database for capturing data in the ARC structure. Additionally, it produces paper-like versions of the CRFs and completion guides.</p>
+        <p>BRIDGE is an application developed by <a href="https://isaric.org/">ISARIC</a> to help create case report forms (CRFs). It uses <a href="https://github.com/ISARICResearch/DataPlatform/tree/main/ARCH">ARC</a>, ISARIC's version-controlled library of standardized clinical questions.</p>
+        <p>ARC includes questions about demographics, comorbidities, symptoms, medications, and outcomes. Questions follow a standardized schema, use controlled terminology, and include quality checks.</p>
+        <p>BRIDGE lets users select and customize ARC questions for a particular disease or research context. It can generate files for setting up or updating a Research Electronic Data Capture (REDCap) project, as well as printable CRFs and completion guides.</p>
+        <p>There are two ways to start building a CRF with BRIDGE: choose one or more templates, or select forms, sections, and individual questions from the ARC tree. You can also adjust a template-based selection in the tree.</p>
+
+        <h2 id="quick-start">Quick Start</h2>
+        <ol>
+            <li>In <a href="#settings">Settings</a>, choose an ARC version, an available language, and the files you want to generate.</li>
+            <li>Start from one or more <a href="#templates">templates</a>, or choose forms, sections, and questions in the <a href="#create-crf">ARC tree</a>.</li>
+            <li>Review your selections in the CRF representation panel. Configure any question-specific options, such as units or list choices.</li>
+            <li>Enter a CRF name and click Generate.</li>
+            <li>Use the generated file that matches your task: XML for a new REDCap project, Data Dictionary CSV for adding selected questions to a project, or the PDF for paper collection.</li>
+        </ol>
         
         <h2 id="structure">Structure</h2>
         <p>BRIDGE is divided into three components:</p>
         <ol>
-            <li>The tool bar is located on the left and allows the user to enter the settings and the templates. To open each of those you should click on the respective icon and click back when you want to return to the general view.</li>
-            <li>The ARC checkable tree is in the central panel of the application. It presents ARC as a tree structure with different levels: ARC version, forms, sections, and questions.</li>
+            <li>The toolbar on the left opens Settings and Templates. Select an icon to open a panel, then use Back to return to the main view.</li>
+            <li>The checkable ARC tree is in the central panel. It organizes questions by ARC version, form (also called an instrument), section, and question.</li>
             <li>The CRF representation panel shows how the CRF is going to be when generating, including selected questions and support questions needed to be functional (that are automatically added by BRIDGE).</li>
         </ol>
 
-        <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/1_structure.png" alt="BRIDGE structure">
+        <figure><img src="assets/1_structure.png" alt="BRIDGE structure">
+            <figcaption>The toolbar, ARC question tree, and CRF representation panel.</figcaption>
+        </figure>
 
         
         <h2 id="settings">Settings</h2>
-        <p>In the settings panel, users can select the version of ARC they want to use and the BRIDGE outcomes they want to generate:</p>
+        <p>The Settings Panel allows users to customize their data collection environment by selecting their preferred ARC version, language, and BRIDGE output files.
+            The selected language automatically applies to all field labels and any generated BRIDGE output files irrespective of the ARC version.</p>
+        <p>Users must choose language of choice before proceeding to template, as changing this setting later will completely erase any question selections already made in the template.</p>
+        <p>The specific BRIDGE output files generated are based on user's selection in the settings panel, and each output file serve a distinct purpose described below:</p>
         <ul>
-            <li><strong>ISARIC Clinical Characterization XML:</strong> This file can be used to generate a REDCap project. It contains the clinical characterization structure that can be uploaded to REDCap to generate a project that allows data capture in the ARC structure.</li>
-            <li><strong>REDCap Data Dictionary:</strong> This file can be used to add the specific forms and questions selected in BRIDGE to the REDCap project.</li>
-            <li><strong>Paper-like CRF:</strong> This is a PDF file that can be printed and used to collect data manually, allowing sites that cannot capture data electronically to collect information that can later be uploaded to the REDCap database.</li>
+            <li><strong>ISARIC Clinical Characterization XML:</strong>  This file can be used to generate a REDCap project. It contains the clinical characterization structure that can be uploaded to REDCap to generate a project that allows data capture in the ARC structure.</li>
+            <li><strong>REDCap Data Dictionary:</strong> This CSV contains the forms and questions selected for your CRF. Use it to add them to a REDCap project.</li>
+            <li><strong>Paper-like CRF (PDF + Guide):</strong> This option generates a printable PDF form for manual data collection and a completion guide.</li>
+            <li><strong>CRF Review Word Document:</strong> This optional file provides a Word version of the selected CRF for review.</li>
         </ul>
 
-        <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/2_settings.png" alt="BRIDGE settings">
+        <figure><img src="assets/2_settings.jpeg" alt="BRIDGE settings">
+            <figcaption>Choose the ARC version, language, and output files in Settings.</figcaption>
+        </figure>
         
                
         <h2 id="templates">Templates</h2>
-        <p>Templates are pre-selected groups of questions. Users can click on the Templates tab and select those they want to include in the CRF.</p>
+        <p>To start from a template, open the Templates tab and select one or more pre-selected groups of questions. BRIDGE combines the questions from the selected templates, and you can then add or remove questions in the ARC tree.</p>
         <p>ISARIC templates allow users to start the CRF creation process based on a set of pre-selected questions that ISARIC has curated for a particular disease or score.</p>
         <p>Disease templates have been generated by the ISARIC network and have followed the CRF creation process that seeks to ensure that the questions included in such CRFs are adequate and sufficient to answer pertinent research questions. If you want to know more about the ISARIC creation process, please write to <a href="mailto:data@isaric.org">data@isaric.org</a>.</p>
         <p>Score templates are subsets of questions necessary to compute commonly used clinical scores, for example, the Charlson Comorbidity Index or SOFA.</p>
-        <p>If multiple templates are selected, the obtained CRF is the union of the questions from all the selected templates. Additionally, the CRF can be customized. See <a href="#create-crf">How to Create a CRF with BRIDGE</a> section.</p>
+        <p>For more about selecting and customizing questions in the ARC tree, see <a href="#create-crf">How to Create a CRF with BRIDGE</a>.</p>
         
         <h2 id="create-crf">How to Create a CRF with BRIDGE</h2>
-        <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/3_tree.png" alt="BRIDGE checkable tree">
-        <p>To create a CRF in BRIDGE, users need to navigate the checkable tree and select the questions they want to include in the CRF. After this is done, a representation of the questions will appear in the CRF representation panel. Sometimes additional questions will appear because BRIDGE handles retro-inclusion of questions. For example, when the user checks the ‘Pregnant’ question, the ‘Sex at birth’ question is also added to the CRF.</p>
-        <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/4_example1.png" alt="BRIDGE Example 1">
+        <figure><img src="assets/3_tree.jpeg" alt="BRIDGE checkable tree">
+            <figcaption>Browse the tree by form and section, then select the questions to include.</figcaption>
+        </figure>
+        <p>To build or customize a CRF in the ARC tree, expand a form and select a whole form, a section, or individual questions. Your selections appear in the CRF representation panel. BRIDGE may also add supporting questions automatically. For example, selecting ‘Pregnant’ also adds ‘Sex at birth’.</p>
+        <figure><img src="assets/4_example1.jpeg" alt="BRIDGE Example 1">
+            <figcaption>Selecting ‘Pregnant’ also adds the supporting ‘Sex at birth’ question.</figcaption>
+        </figure>
         <p>Similarly, BRIDGE also generates and adds questions that improve electronic data collection. For example, when the user selects the question ‘Other sign(s) or abnormality,’ additional questions are added that promote the inclusion of up to five additional unlisted signs at presentation.</p>
-        <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/5_example2.png" alt="BRIDGE Example 2">
+        <figure><img src="assets/5_example2.jpeg" alt="BRIDGE Example 2">
+            <figcaption>BRIDGE adds follow-up fields for additional unlisted signs.</figcaption>
+        </figure>
         <h2 id="user-defined-questions">User Defined Questions</h2>
         <p>In addition to allowing the selection of questions for a particular CRF, BRIDGE allows further question customization in the following ways:</p>
         <ul>
-            <li><strong>‘Select units’ question:</strong> Measurement units can be selected in questions that have the text ‘(select units)’ in the label. Users can select the units they want to include in the CRF, and BRIDGE will add the pertinent questions for this. For example, if a user selects a single unit for a question, such as cm in ‘Height,’ the numeric question ‘Height (cm)’ will be added. If the user selects multiple units, such as cm and in, BRIDGE will generate a numeric question for ‘Height’ and another radio question for ‘Select Height units’ with the selected units.</li>
-            <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/6_selectunits.png" alt="BRIDGE Select Units">
-            <li><strong>‘User list’ question:</strong> For particular questions, the options that are adequate for the disease and/or site can be selected by the user. The user needs to click the LABEL of the question with this symbol ↳ in the checkable tree. This will open a new window that allows users to select the pertinent options for such questions. This will generate a radio question with the user-selected options and the ‘Other’ option. It will also generate a dropdown question with the options that were not selected by the user, which corresponds to a second layer of possible options to limit free text. A third question for free text is also added and will appear in electronic capture when the ‘Other’ option in the second layer dropdown is selected.</li>
-            <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/7_userlist.png" alt="BRIDGE User list">
-            <li><strong>‘Multi list’ question:</strong> The question with this symbol on the label ⇉ has a similar behavior to the ‘User list’ question, with the only difference being that the layer one options are checkboxes, not radios, allowing multiple selections.</li>
+            <li><strong>‘Select units’ question:</strong> For questions labelled ‘(select units),’ choose the units to include. If you choose one unit, BRIDGE adds a numeric question with that unit in its label (for example, ‘Height (cm)’). If you choose several units, BRIDGE adds a numeric question and a separate question for selecting the unit.
+            <figure><img src="assets/6_selectunits.jpg" alt="BRIDGE Select Units">
+                <figcaption>Example of choosing measurement units for a question.</figcaption>
+            </figure>
+            </li>
+            <li><strong>‘User list’ question (↳):</strong>
+                <ol>
+                    <li>In the ARC tree, click the question label marked with ↳ to open its options.</li>
+                    <li>Choose the options that are relevant to your study or site.</li>
+                    <li>BRIDGE creates a radio question with your choices and ‘Other’, a second-level dropdown with the remaining options, and a free-text field for an ‘Other’ response in that dropdown.</li>
+                </ol>
+            <figure><img src="assets/7_userlist.jpg" alt="BRIDGE User list">
+                <figcaption>Choose the options for a user list question.</figcaption>
+            </figure>
+            </li>
+            <li><strong>‘Multi list’ question (⇉):</strong> Follow the same steps as for a User list question. The first-level options are checkboxes, so users can select more than one.</li>
         </ul>
-        <p>After choosing the variables, users can generate the pertinent files. They need to enter a CRF name in the textbox below the CRF representation panel and click the generate button.</p>
+        <p>After choosing the variables, users can generate the pertinent files. They need to enter a CRF name in the textbox below the CRF representation panel and click on one of the buttons:</p>
+        <ul>
+            <li><strong>Generate</strong> Downloads the data dictionary, XML file, paper like version of the CRFs and completion guide, and/ or CRF review word document, based on the output files selected in the settings panel.</li>
+            <li><strong>Save Template</strong> Saves your BRIDGE tree variable selection progress, allowing you to resume the variable selection process from where you left off without having to repeat the entire process.</li>
+            <li><strong>Upload Template</strong> Allows you to upload a previously saved template, and resume variable selection from where you left off.</li>
+        </ul>
         
         <h2 id="bridge-files">How to Use BRIDGE Generated Files</h2>
-        <p>As mentioned, BRIDGE generates three files:</p>
+        <p>BRIDGE generates the files you selected in Settings:</p>
         <ul>
-            <li><strong>ISARIC Clinical Characterization XML:</strong> This XML file can be used to create a project in REDCap. To do this, navigate to the 'Project Setup' section in REDCap, and under 'Design your data collection instruments & enable your project,' click on 'Upload Instrument Zip file' and upload the XML file generated by BRIDGE.</li>
-            <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/8_redcapxml.png" alt="REDCAP XML">
-            <li>This file creates a REDCap project with the following event structure:</li>
-            <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/Events_and_intruments.png" alt="Event_forms Structure">
-            <li><strong>REDCap Data Dictionary CSV:</strong> This CSV file can be used to update an existing REDCap project. Go to the 'Data Dictionary' section in REDCap, click 'Choose File,' and upload the CSV file generated by BRIDGE. Click 'Upload File' to apply the changes.</li>
-            <img src="https://github.com/ISARICResearch/Training/raw/main/docs/assets/9_redcapcsv.png" alt="REDCAP CSV">
-            <li><strong>Paper-like CRF:</strong> This PDF file can be printed and used for manual data capture in sites that cannot collect data electronically. The collected data can later be entered into the REDCap database.</li>
+            <li><strong>ISARIC Clinical Characterization XML:</strong> Use this language-specific XML to set up the standard ISARIC clinical-characterization structure in REDCap. In REDCap, go to 'Project Setup' and, under 'Design your data collection instruments &amp; enable your project,' choose 'Upload Instrument Zip file' and upload the file.
+            <figure><img src="assets/8_redcapxml.png" alt="REDCAP XML">
+                <figcaption>Upload the XML from the REDCap Project Setup page to create a new project.</figcaption>
+            </figure>
+            </li>
+            <li>This file creates a REDCap project with the following event structure:
+            <figure><img src="assets/Events_and_intruments.png" alt="Event and instrument structure">
+                <figcaption>Example event and instrument structure in the created project.</figcaption>
+            </figure>
+            </li>
+            <li><strong>REDCap Data Dictionary CSV:</strong> This file contains the forms and questions selected for your CRF. To add them to an existing REDCap project, go to 'Data Dictionary', choose the CSV file, and click 'Upload File'.
+            <figure><img src="assets/9_redcapcsv.png" alt="REDCAP CSV">
+                <figcaption>Upload the Data Dictionary CSV from the REDCap Data Dictionary page.</figcaption>
+            </figure>
+            </li>
+            <li><strong>Paper-like CRF and Completion Guide:</strong> The printable PDF can be used for manual data collection at sites that cannot capture data electronically. The completion guide supports consistent form completion, and collected data can later be entered into REDCap.</li>
+            <li><strong>CRF Review Word Document:</strong> This editable eCRF word document can be use to facilitate collaborative reviews and adjustments to study specific needs before finalizing the the CRFs.</li>
         </ul>
          <div class="footer">
         <p>
@@ -137,6 +196,7 @@
             <a href="https://isaric.org/" target="_blank">ISARIC</a>
             on behalf of Oxford University.
         </p>
+    </div>
     </div>
 </body>
 </html>
